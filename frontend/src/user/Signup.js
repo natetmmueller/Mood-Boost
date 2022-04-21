@@ -10,6 +10,10 @@ export default class Signup extends Component {
     this.setState(temp);
   };
 
+  signupHandler = () => {
+    this.props.register(this.state)
+  }
+
   render() {
     console.log(this.state);
     return (
@@ -48,7 +52,7 @@ export default class Signup extends Component {
               onChange={this.changeHandler}
             ></Form.Control>
           </Form.Group>
-          <Button varient="primary">Register</Button>
+          <Button varient="primary" onClick={this.signupHandler}>Register</Button>
         </Container>
       </div>
     );
