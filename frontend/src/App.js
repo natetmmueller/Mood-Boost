@@ -23,7 +23,8 @@ export default class App extends Component {
   };
 
   loginHandler = (cred) => {
-    Axios.post("auth/signin").then((response) => {
+    Axios.post("auth/signin", cred).then((response) => {
+      console.log(response.data);
       console.log(response.data.token);
     });
   };
