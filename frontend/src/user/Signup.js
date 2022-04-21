@@ -11,7 +11,7 @@ export default class Signup extends Component {
   };
 
   signupHandler = () => {
-    this.props.register(this.state)
+    this.props.singupAccount(this.state)
   }
 
   render() {
