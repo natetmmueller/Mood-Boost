@@ -4,6 +4,7 @@ import Signup from "./user/Signup";
 import Signin from "./user/Signin";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Axios from "axios";
+import { Navbar, Container, Nav  } from "react-bootstrap";
 
 export default class App extends Component {
   state = {
@@ -30,17 +31,32 @@ export default class App extends Component {
   };
 
   render() {
+    const linkStyle = {
+      margin: "1rem",
+      textDecoration: "none",
+      color: 'white'
+    };
     return (
       <div>
         {/* You can create links to your components with link tag - see below */}
         <Router>
-          <nav>
+            <Navbar bg="primary" variant="dark">
+                <Container>
+                  <Nav className="me-auto">
+                    <Link to="post/all" style={linkStyle}>Home</Link>
+                    <Link to="signup" style={linkStyle}>Sign Up</Link>
+                    <Link to="signin" style={linkStyle}>Sign In</Link>
+                  </Nav>
+                </Container>
+            </Navbar>
+          {/* <nav bg="primary" variant="dark">
             <div>
-              <Link to="post/all">Home</Link> <Link to="signup">Signup</Link>{" "}
-              &nbsp
-              <Link to="signin">Signin</Link> &nbsp
+              <Link to="post/all">Home</Link>{" "}
+              <Link to="signup">Signup</Link>{" "}
+              
+              <Link to="signin">Signin</Link>{" "}
             </div>
-          </nav>
+          </nav> */}
           <div>
             <Routes>
               <Route
