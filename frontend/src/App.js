@@ -2,9 +2,14 @@ import React, { Component } from "react";
 
 import Signup from "./user/Signup";
 import Signin from "./user/Signin";
+import PostCreate from "./post/PostCreate";
+import "./index.css";
+
+import PostIndex from "./post/PostIndex";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Axios from "axios";
-import { Navbar, Container, Nav  } from "react-bootstrap";
+// import { Post } from "../../../backend/models/Post";
+import { Navbar, Container, Nav } from "react-bootstrap";
 
 export default class App extends Component {
   state = {
@@ -34,21 +39,30 @@ export default class App extends Component {
     const linkStyle = {
       margin: "1rem",
       textDecoration: "none",
-      color: 'white'
+      color: "white",
     };
     return (
       <div>
         {/* You can create links to your components with link tag - see below */}
         <Router>
-            <Navbar bg="primary" variant="dark">
-                <Container>
-                  <Nav className="me-auto">
-                    <Link to="post/all" style={linkStyle}>Home</Link>
-                    <Link to="signup" style={linkStyle}>Sign Up</Link>
-                    <Link to="signin" style={linkStyle}>Sign In</Link>
-                  </Nav>
-                </Container>
-            </Navbar>
+          <Navbar bg="primary" variant="dark">
+            <Container>
+              <Nav className="me-auto">
+                <Link to="post/index" style={linkStyle}>
+                  Home
+                </Link>
+                <Link to="signup" style={linkStyle}>
+                  Sign Up
+                </Link>
+                <Link to="signin" style={linkStyle}>
+                  Sign In
+                </Link>
+                <Link to="/post/add" style={linkStyle}>
+                  Add Post
+                </Link>
+              </Nav>
+            </Container>
+          </Navbar>
           {/* <nav bg="primary" variant="dark">
             <div>
               <Link to="post/all">Home</Link>{" "}
@@ -67,6 +81,8 @@ export default class App extends Component {
                 path="signin"
                 element={<Signin login={this.loginHandler} />}
               ></Route>
+              <Route path="post/add" element={<PostCreate />}></Route>
+              <Route path="post/index" element={<PostIndex />}></Route>
             </Routes>
           </div>
         </Router>
