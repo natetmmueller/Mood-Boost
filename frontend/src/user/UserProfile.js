@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 
+// import { User } from "../backend/models/User";
+
 export default class UserProfile extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +25,9 @@ export default class UserProfile extends Component {
           <table>
             <tbody>
               <tr>
-                <td>{this.state.firstName}</td>
+                <td>
+                  This is what makes <b>{this.state.firstName}</b> happy!
+                </td>
                 <td>{this.state.lastName}</td>
                 <td>{this.state.emailAddress}</td>
               </tr>
