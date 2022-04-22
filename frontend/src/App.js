@@ -48,13 +48,13 @@ export default class App extends Component {
           <Navbar bg="primary" variant="dark">
             <Container>
               <Nav className="me-auto">
-                <Link to="post/index" style={linkStyle}>
+                <Link to="/post/index" style={linkStyle}>
                   Home
                 </Link>
-                <Link to="signup" style={linkStyle}>
+                <Link to="/signup" style={linkStyle}>
                   Sign Up
                 </Link>
-                <Link to="signin" style={linkStyle}>
+                <Link to="/signin" style={linkStyle}>
                   Sign In
                 </Link>
                 <Link to="/post/add" style={linkStyle}>
@@ -74,15 +74,15 @@ export default class App extends Component {
           <div>
             <Routes>
               <Route
-                path="signup"
+                path="/signup"
                 element={<Signup singupAccount={this.registerHandler} />}
               ></Route>
               <Route
-                path="signin"
+                path="/signin"
                 element={<Signin login={this.loginHandler} />}
               ></Route>
-              <Route path="post/add" element={<PostCreate />}></Route>
-              <Route path="post/index" element={<PostIndex />}></Route>
+              <Route path="/post/add" element={<PostCreate addPost = {this.addPost} />}></Route>
+              <Route path="/post/index" element={<PostIndex />}></Route>
             </Routes>
           </div>
         </Router>
