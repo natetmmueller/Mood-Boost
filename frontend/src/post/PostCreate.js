@@ -1,44 +1,28 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import Axios from "axios";
+import { useNavigate } from "react-router";
 
-export default class PostCreate extends Component {
+export default function PostCreate(props) {
 
-  constructor(props) {
-    super(props);
+  const [newPost, setNewPost] = useState(null)
+  const navigate = useNavigate();
 
-    this.state = {
-      newPost: {},
-    };
-  }
-
-  handleChange = (event) => {
+  const handleChange = (event) => {
     const attributeToChange = event.target.name;
     const newValue = event.target.value;
 
-    const post = { ...this.state.newPost };
+    const post = { ...newPost };
     post[attributeToChange] = newValue;
 
-    this.setState({
-      newPost: post,
-    });
+    setNewPost(post);
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    this.addPost(this.state.newPost);
-  };
-
-
-  addPost = (post) => {
-    Axios.post("add", post, {
-      // headers: {
-      //   Authorization: "Bearer " + localStorage.getItem("token"),
-      // },
-    })
+  const addPost = (post) => {
+    Axios.post("/post/add", post)
       .then((response) => {
         console.log("Post Added successfully!");
-        this.loadPostIndex();
+        
       })
       .catch((error) => {
         console.log("Error Adding Post");
@@ -46,15 +30,23 @@ export default class PostCreate extends Component {
       });
   };
   
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    addPost(newPost);
+    navigate("/post/index")
+  };
 
-  render() {
-    console.log(this.state.newPost);
+
+  
+
+ 
+  
     return (
       <div>
         <Container>
           <h1>Create Post</h1>
 
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <Row>
               <Col>
                 <div>
@@ -67,7 +59,7 @@ export default class PostCreate extends Component {
                     <input
                       name="name"
                       type="text"
-                      onChange={this.handleChange}
+                      onChange={handleChange}
                     ></input>
                   </div>
                 </div>
@@ -86,7 +78,7 @@ export default class PostCreate extends Component {
                   <input
                     name="scale"
                     type="number"
-                    onChange={this.handleChange}
+                    onChange={handleChange}
                   ></input>
                 </div>
               </div>
@@ -104,7 +96,7 @@ export default class PostCreate extends Component {
                   <textarea
                     name="description"
                     type="text"
-                    onChange={this.handleChange}
+                    onChange={handleChange}
                   ></textarea>
                 </div>
               </div>
@@ -121,7 +113,7 @@ export default class PostCreate extends Component {
                   <input
                     name="linkToIt"
                     type="text"
-                    onChange={this.handleChange}
+                    onChange={handleChange}
                   ></input>
                 </div>
               </div>
@@ -137,4 +129,4 @@ export default class PostCreate extends Component {
       </div>
     );
   }
-}
+

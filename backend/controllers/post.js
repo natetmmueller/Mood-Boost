@@ -12,7 +12,7 @@ exports.addPost = (req, res) => {
     
     post.save()
     .then(() => {
-        res.redirect("/post/index");
+        res.status(200).send("done")
     })
     .catch((err) => {
         console.log(err);

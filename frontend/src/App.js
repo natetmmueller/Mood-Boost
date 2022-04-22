@@ -18,6 +18,8 @@ export default class App extends Component {
     message: null,
   };
 
+
+
   registerHandler = (user) => {
     Axios.post("auth/signup", user)
       .then((response) => {
@@ -81,7 +83,7 @@ export default class App extends Component {
                 path="/signin"
                 element={<Signin login={this.loginHandler} />}
               ></Route>
-              <Route path="/post/add" element={<PostCreate addPost = {this.addPost} />}></Route>
+              <Route path="/post/add" element={<PostCreate addPost={this.addPost}/>}></Route>
               <Route path="/post/index" element={<PostIndex />}></Route>
             </Routes>
           </div>
