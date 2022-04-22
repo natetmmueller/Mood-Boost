@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Signup from "./user/Signup";
 import Signin from "./user/Signin";
 import PostCreate from "./post/PostCreate";
+import './App.css';
 import "./index.css";
 import UserProfile from "./user/UserProfile";
 

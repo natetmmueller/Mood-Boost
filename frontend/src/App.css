@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.card-footer{
+  background-color: rgb(255, 165, 61);
+}
+
+.postButton{
+  margin: 2px;
+  border-radius: 10px;
+}
+
+.cards{
+  margin: 2px;
+  display: inline-block;
+}

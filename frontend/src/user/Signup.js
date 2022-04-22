@@ -16,7 +16,7 @@ export default function Signup(props) {
 
   const signupHandler = () => {
     props.signupAccount(user)
-    navigate("/post/index")
+    navigate("/signin")
   }
 
     return (
