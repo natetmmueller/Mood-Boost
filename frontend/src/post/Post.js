@@ -13,6 +13,8 @@ export default class Post extends Component {
         <td>{this.props.description}</td>
         <td>{this.props.linkToIt}</td>
         <td>
+        
+        
           <button
             onClick={() => {
               this.props.editView(this.props._id);
