@@ -18,7 +18,7 @@ export default class PosIndex extends Component {
   }
 
   loadPostIndex = () => {
-    Axios.get("post/index")
+    Axios.get("/post/index")
       .then((response) => {
         console.log(response.data.posts);
         this.setState({

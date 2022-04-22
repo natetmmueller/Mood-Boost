@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { Container, Form, Button } from "react-bootstrap";
+import {useNavigate} from "react-router";
 
 export default class Signin extends Component {
   state = {};
+
+  navigate = useNavigate();
 
   changeHandler = (e) => {
     let temp = { ...this.state };
@@ -12,6 +15,7 @@ export default class Signin extends Component {
 
   loginHandler = () => {
     this.props.login(this.state);
+    this.navigate("/post/index")
   };
 
   render() {
@@ -37,7 +41,7 @@ export default class Signin extends Component {
             ></Form.Control>
           </Form.Group>
 
-          <Button varient="primary" onClick={this.loginHandler}>
+          <Button varient="primary" onClick={this.loginHandler} >
             Login
           </Button>
         </Container>
