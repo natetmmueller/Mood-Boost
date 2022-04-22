@@ -18,10 +18,16 @@ module.exports = (req, res, next) => {
   try{
     const decoded = jwt.verify(token, process.env.secret)
   }
+  catch(error){
+    return res.json({
+        "message":"Your token is invaild"
+    });
+}
 
   if (!req.user) {
     res.redirect("/auth/signin");
   } else {
     next();
   }
+  
 };
