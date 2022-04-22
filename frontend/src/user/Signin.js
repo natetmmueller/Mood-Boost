@@ -1,21 +1,24 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
+import { useNavigate } from "react-router";
 
-export default class Signin extends Component {
-  state = {};
+export default function Signin(props) {
+  
+  const [user, setUser] = useState(null);
 
-  changeHandler = (e) => {
-    let temp = { ...this.state };
+  const navigate = useNavigate();
+
+  const changeHandler = (e) => {
+    let temp = { ...user };
     temp[e.target.name] = e.target.value;
-    this.setState(temp);
+    setUser(temp);
   };
 
-  loginHandler = () => {
-    this.props.login(this.state);
+  const loginHandler = () => {
+    props.login(user);
+    navigate("/post/index")
   };
 
-  render() {
-    console.log(this.state);
     return (
       <div>
         <h1>Sign In</h1>
@@ -24,7 +27,7 @@ export default class Signin extends Component {
             <Form.Label>Email Address</Form.Label>
             <Form.Control
               name="emailAddress"
-              onChange={this.changeHandler}
+              onChange={changeHandler}
             ></Form.Control>
           </Form.Group>
 
@@ -33,15 +36,14 @@ export default class Signin extends Component {
             <Form.Control
               name="password"
               type="password"
-              onChange={this.changeHandler}
+              onChange={changeHandler}
             ></Form.Control>
           </Form.Group>
 
-          <Button varient="primary" onClick={this.loginHandler}>
+          <Button varient="primary" onClick={loginHandler} >
             Login
           </Button>
         </Container>
       </div>
     );
-  }
 }

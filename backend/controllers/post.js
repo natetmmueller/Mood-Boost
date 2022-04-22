@@ -4,9 +4,24 @@ const {Post} = require("../models/Post");
 
 const moment = require("moment");
 
+
+
+//post a post 
+exports.addPost = (req, res) => {
+    let post = new Post(req.body);
+    
+    post.save()
+    .then(() => {
+        res.redirect("/post/index");
+    })
+    .catch((err) => {
+        console.log(err);
+        res.send("Error!");
+    });
+}
 //Get all posts
 exports.post_index = (req, res) => {
-    Post.find({}).populate()
+    Post.find().populate()
     // res.render('routes/allPost', {posts})
     //instead of rendering a view i nedd to render via React
     .then(posts => {
@@ -17,18 +32,16 @@ exports.post_index = (req, res) => {
     })
 }
 
-
-//post a post 
-exports.addPost = (req, res) => {
-    try{
-        req.body.user = req.user.firstName
-        Post.create(req.body)
-        res.status(200).send('Done')
-
-    } catch(err) {
-        res.status(400).json(err);
-    }
-}
+// gets a post from the database 
+// exports.getPost = (req, res) => {
+//     Post.find().populate('user')
+//     .then(posts => {
+//         res.json({posts})
+//     })
+//     .catch(err => {
+//         console.log(err);
+//     });
+// };
 
 
 //detail page of a post

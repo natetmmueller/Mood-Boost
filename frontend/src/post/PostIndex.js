@@ -4,7 +4,7 @@ import Post from "./Post";
 import PostCreate from "./PostCreate";
 // import { Post } from "../../../backend/models/Post";
 
-export default class PosIndex extends Component {
+export default class PostIndex extends Component {
   constructor(props) {
     super(props);
 
@@ -18,7 +18,8 @@ export default class PosIndex extends Component {
   }
 
   loadPostIndex = () => {
-    Axios.get("post/index")
+    Axios.get("/post/index")
+
       .then((response) => {
         console.log(response.data.posts);
         this.setState({
@@ -31,21 +32,6 @@ export default class PosIndex extends Component {
       });
   };
 
-  addPost = (post) => {
-    Axios.post("post/add", post, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((response) => {
-        console.log("Post Added successfully!");
-        this.loadPostIndex();
-      })
-      .catch((error) => {
-        console.log("Error Adding Post");
-        console.log(error);
-      });
-  };
 
   render() {
     console.log(this.state);

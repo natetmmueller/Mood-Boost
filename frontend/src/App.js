@@ -11,6 +11,8 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Axios from "axios";
 // import { Post } from "../../../backend/models/Post";
 import { Navbar, Container, Nav } from "react-bootstrap";
+import jwt_decode from 'jwt-decode'
+
 
 export default class App extends Component {
   state = {
@@ -18,6 +20,26 @@ export default class App extends Component {
     user: null,
     message: null,
   };
+
+  componentDidMount() { 
+    let token = localStorage.getItem("token");
+
+    if(token != null){
+      let user = jwt_decode(token);
+      if(user){
+        this.setState({
+          isAuth: true,
+          user: user
+        });
+      } else {
+        localStorage.removeItem('token');
+        this.setState({
+          isAuth: false
+        })
+      }
+    }
+
+   }
 
   registerHandler = (user) => {
     Axios.post("auth/signup", user)
@@ -31,9 +53,16 @@ export default class App extends Component {
 
   loginHandler = (cred) => {
     Axios.post("auth/signin", cred).then((response) => {
-      console.log(response.data);
-      console.log(response.data.token);
+      console.log(response.data,"response data");
+      let token = response.data.token;
+      let user = jwt_decode(token);
+      this.setState({
+        isAuth: true,
+        user: user
+      });
+      // console.log(response.data.token);
     });
+    console.log(this.state)
   };
 
   render() {
@@ -42,6 +71,7 @@ export default class App extends Component {
       textDecoration: "none",
       color: "white",
     };
+    console.log(this.state,"Hi!")
     return (
       <div>
         {/* You can create links to your components with link tag - see below */}
@@ -49,21 +79,31 @@ export default class App extends Component {
           <Navbar bg="primary" variant="dark">
             <Container>
               <Nav className="me-auto">
-                <Link to="post/index" style={linkStyle}>
-                  Home
-                </Link>
-                <Link to="signup" style={linkStyle}>
-                  Sign Up
-                </Link>
-                <Link to="signin" style={linkStyle}>
-                  Sign In
-                </Link>
-                <Link to="/post/add" style={linkStyle}>
-                  Add Post
-                </Link>
-                <Link to="profile" style={linkStyle}>
-                  My Profile
-                </Link>
+
+            {!this.state.isAuth ?
+                <>
+                  <Link to="/post/index" style={linkStyle}>
+                    Home
+                  </Link>
+                  <Link to="/signup" style={linkStyle}>
+                    Sign Up
+                  </Link>
+                  <Link to="/signin" style={linkStyle}>
+                    Sign In
+                  </Link> 
+                  </>
+                  :
+                  <>
+                    <Link to="/post/index" style={linkStyle}>
+                      Home
+                    </Link>
+                    <Link to="/post/add" style={linkStyle}>
+                      Add Post
+                    </Link> 
+                  </>
+          
+              }
+
               </Nav>
             </Container>
           </Navbar>
@@ -77,17 +117,29 @@ export default class App extends Component {
           </nav> */}
           <div>
             <Routes>
-              <Route
-                path="signup"
-                element={<Signup singupAccount={this.registerHandler} />}
-              ></Route>
-              <Route
-                path="signin"
-                element={<Signin login={this.loginHandler} />}
-              ></Route>
-              <Route path="post/add" element={<PostCreate />}></Route>
-              <Route path="post/index" element={<PostIndex />}></Route>
-              <Route path="profile" element={<UserProfile />}></Route>
+
+              {!this.state.isAuth ?
+                  <>
+                    <Route
+                      path="/signup"
+                      element={<Signup signupAccount={this.registerHandler} />}
+                    ></Route>
+                    <Route
+                      path="/signin"
+                      element={<Signin login={this.loginHandler} />}
+                    ></Route>
+                    <Route path="/post/index" element={<PostIndex />}></Route>
+                  </>
+                  :
+                    <>
+                    <Route path="/post/add" element={<PostCreate />}></Route>
+                    <Route path="/post/index" element={<PostIndex />}></Route>
+                    {/* <Navigate to="/post/index" replace={true}/> */}
+                  </>
+                  
+              }
+                  
+            
             </Routes>
           </div>
         </Router>

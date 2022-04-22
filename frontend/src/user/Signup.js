@@ -1,21 +1,24 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
+import { useNavigate } from "react-router";
 
-export default class Signup extends Component {
-  state = {};
+export default function Signup(props) {
 
-  changeHandler = (e) => {
-    let temp = { ...this.state };
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+
+  const changeHandler = (e) => {
+    let temp = { ...user };
     temp[e.target.name] = e.target.value;
-    this.setState(temp);
+    setUser(temp);
   };
 
-  signupHandler = () => {
-    this.props.singupAccount(this.state);
-  };
+  const signupHandler = () => {
+    props.signupAccount(user)
+    navigate("/post/index")
+  }
 
-  render() {
-    console.log(this.state);
     return (
       <div>
         <h1>Sign Up</h1>
@@ -24,7 +27,7 @@ export default class Signup extends Component {
             <Form.Label>First Name</Form.Label>
             <Form.Control
               name="firstName"
-              onChange={this.changeHandler}
+              onChange={changeHandler}
             ></Form.Control>
           </Form.Group>
 
@@ -32,7 +35,7 @@ export default class Signup extends Component {
             <Form.Label>First Name</Form.Label>
             <Form.Control
               name="lastName"
-              onChange={this.changeHandler}
+              onChange={changeHandler}
             ></Form.Control>
           </Form.Group>
 
@@ -40,7 +43,7 @@ export default class Signup extends Component {
             <Form.Label>Email Address</Form.Label>
             <Form.Control
               name="emailAddress"
-              onChange={this.changeHandler}
+              onChange={changeHandler}
             ></Form.Control>
           </Form.Group>
 
@@ -49,14 +52,11 @@ export default class Signup extends Component {
             <Form.Control
               name="password"
               type="password"
-              onChange={this.changeHandler}
+              onChange={changeHandler}
             ></Form.Control>
           </Form.Group>
-          <Button varient="primary" onClick={this.signupHandler}>
-            Register
-          </Button>
+          <Button varient="primary" onClick={signupHandler}>Register</Button>
         </Container>
       </div>
     );
-  }
 }
