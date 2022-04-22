@@ -22,16 +22,9 @@ module.exports = (req, res, next) => {
       message: "Your token is invaild",
     });
   }
-  catch(error){
-    return res.json({
-        "message":"Your token is invaild"
-    });
-}
-
   if (!req.user) {
     res.redirect("/auth/signin");
   } else {
     next();
   }
-  
 };

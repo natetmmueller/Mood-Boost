@@ -11,8 +11,8 @@ export default class Signup extends Component {
   };
 
   signupHandler = () => {
-    this.props.singupAccount(this.state)
-  }
+    this.props.singupAccount(this.state);
+  };
 
   render() {
     console.log(this.state);
@@ -52,7 +52,9 @@ export default class Signup extends Component {
               onChange={this.changeHandler}
             ></Form.Control>
           </Form.Group>
-          <Button varient="primary" onClick={this.signupHandler}>Register</Button>
+          <Button varient="primary" onClick={this.signupHandler}>
+            Register
+          </Button>
         </Container>
       </div>
     );

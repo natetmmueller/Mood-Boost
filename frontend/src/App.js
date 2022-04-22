@@ -4,6 +4,7 @@ import Signup from "./user/Signup";
 import Signin from "./user/Signin";
 import PostCreate from "./post/PostCreate";
 import "./index.css";
+import UserProfile from "./user/UserProfile";
 
 import PostIndex from "./post/PostIndex";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
@@ -60,6 +61,9 @@ export default class App extends Component {
                 <Link to="/post/add" style={linkStyle}>
                   Add Post
                 </Link>
+                <Link to="profile" style={linkStyle}>
+                  My Profile
+                </Link>
               </Nav>
             </Container>
           </Navbar>
@@ -83,6 +87,7 @@ export default class App extends Component {
               ></Route>
               <Route path="post/add" element={<PostCreate />}></Route>
               <Route path="post/index" element={<PostIndex />}></Route>
+              <Route path="profile" element={<UserProfile />}></Route>
             </Routes>
           </div>
         </Router>
