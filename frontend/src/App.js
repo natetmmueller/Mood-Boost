@@ -4,6 +4,7 @@ import Signup from "./user/Signup";
 import Signin from "./user/Signin";
 import PostCreate from "./post/PostCreate";
 import "./index.css";
+import UserProfile from "./user/UserProfile";
 
 import PostIndex from "./post/PostIndex";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
@@ -138,8 +139,7 @@ export default class App extends Component {
                   
               }
                   
-              
-
+            
             </Routes>
           </div>
         </Router>
