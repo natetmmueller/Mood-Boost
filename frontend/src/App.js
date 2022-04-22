@@ -78,6 +78,7 @@ export default class App extends Component {
           <Navbar bg="primary" variant="dark">
             <Container>
               <Nav className="me-auto">
+
             {!this.state.isAuth ?
                 <>
                   <Link to="/post/index" style={linkStyle}>
@@ -101,6 +102,7 @@ export default class App extends Component {
                   </>
           
               }
+
               </Nav>
             </Container>
           </Navbar>
@@ -114,6 +116,7 @@ export default class App extends Component {
           </nav> */}
           <div>
             <Routes>
+
               {!this.state.isAuth ?
                   <>
                     <Route
@@ -136,6 +139,7 @@ export default class App extends Component {
               }
                   
               
+
             </Routes>
           </div>
         </Router>
