@@ -118,7 +118,7 @@ export default class App extends Component {
                   <>
                     <Route
                       path="/signup"
-                      element={<Signup singupAccount={this.registerHandler} />}
+                      element={<Signup signupAccount={this.registerHandler} />}
                     ></Route>
                     <Route
                       path="/signin"
