@@ -110,6 +110,9 @@ export default class App extends Component {
                     <Link to="/profile" style={linkStyle}>
                       My Profile
                     </Link>
+                    <Link to="/post/add" style={linkStyle}>
+                      Add Post
+                    </Link>
                   </>
                 ) : (
                   <>
@@ -151,7 +154,11 @@ export default class App extends Component {
                     path="/profile"
                     element={
                       this.state.isAuth ? (
-                        <UserProfile user={this.state.user.user} />
+                        <UserProfile
+                          user={this.state.user.user}
+                          lastName={this.state.user.lastName}
+                          emailAddress={this.state.user.emailAddress}
+                        />
                       ) : null
                     }
                   ></Route>
