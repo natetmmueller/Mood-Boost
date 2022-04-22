@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Row, Col, Container } from "react-bootstrap";
+import Axios from "axios";
 
 export default class PostCreate extends Component {
+
   constructor(props) {
     super(props);
 
@@ -24,8 +26,26 @@ export default class PostCreate extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.addPost(this.state.newPost);
+    this.addPost(this.state.newPost);
   };
+
+
+  addPost = (post) => {
+    Axios.post("add", post, {
+      // headers: {
+      //   Authorization: "Bearer " + localStorage.getItem("token"),
+      // },
+    })
+      .then((response) => {
+        console.log("Post Added successfully!");
+        this.loadPostIndex();
+      })
+      .catch((error) => {
+        console.log("Error Adding Post");
+        console.log(error);
+      });
+  };
+  
 
   render() {
     console.log(this.state.newPost);
