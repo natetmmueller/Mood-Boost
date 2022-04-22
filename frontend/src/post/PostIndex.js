@@ -18,7 +18,9 @@ export default class PostIndex extends Component {
   }
 
   loadPostIndex = () => {
+
     Axios.get("/post/index")
+
 
       .then((response) => {
         console.log(response.data.posts);
@@ -37,7 +39,7 @@ export default class PostIndex extends Component {
     console.log(this.state);
     const allPosts = this.state.posts.map((post, index) => {
       return (
-        <tr key={index}>
+        <tr key={post._id}>
           <Post {...post}></Post>
         </tr>
       );
