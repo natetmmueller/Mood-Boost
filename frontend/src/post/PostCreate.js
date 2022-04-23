@@ -4,8 +4,7 @@ import Axios from "axios";
 import { useNavigate } from "react-router";
 
 export default function PostCreate(props) {
-
-  const [newPost, setNewPost] = useState(null)
+  const [newPost, setNewPost] = useState(null);
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -22,111 +21,104 @@ export default function PostCreate(props) {
     Axios.post("/post/add", post)
       .then((response) => {
         console.log("Post Added successfully!");
-        
       })
       .catch((error) => {
         console.log("Error Adding Post");
         console.log(error);
       });
   };
-  
+
   const handleSubmit = (event) => {
     event.preventDefault();
     addPost(newPost);
-    navigate("/post/index")
+    navigate("/post/index");
   };
 
+  return (
+    <div>
+      <Container>
+        <h1>Create Post</h1>
 
-  
-
- 
-  
-    return (
-      <div>
-        <Container>
-          <h1>Create Post</h1>
-
-          <form onSubmit={handleSubmit}>
-            <Row>
-              <Col>
-                <div>
-                  <div>
-                    <label>
-                      What makes you happy? <em> Title of post goes here...</em>
-                    </label>
-                  </div>
-                  <div>
-                    <input
-                      name="name"
-                      type="text"
-                      onChange={handleChange}
-                    ></input>
-                  </div>
-                </div>
-              </Col>
-            </Row>
-
-            <Row>
+        <form onSubmit={handleSubmit}>
+          <Row>
+            <Col>
               <div>
                 <div>
                   <label>
-                    How happy does this make you?
-                    <em> Choose a number on the scale...</em>
+                    What makes you happy? <em> Title of post goes here...</em>
                   </label>
                 </div>
                 <div>
                   <input
-                    name="scale"
-                    type="number"
-                    onChange={handleChange}
-                  ></input>
-                </div>
-              </div>
-            </Row>
-
-            <Row>
-              <div>
-                <div>
-                  <label>
-                    Why does this make you happy?{" "}
-                    <em> Write your story here...</em>
-                  </label>
-                </div>
-                <div>
-                  <textarea
-                    name="description"
-                    type="text"
-                    onChange={handleChange}
-                  ></textarea>
-                </div>
-              </div>
-            </Row>
-
-            <Row>
-              <div>
-                <div>
-                  <label>
-                    Link to my Mood Booster! <em>Click here...</em>
-                  </label>
-                </div>
-                <div>
-                  <input
-                    name="linkToIt"
+                    name="name"
                     type="text"
                     onChange={handleChange}
                   ></input>
                 </div>
               </div>
-            </Row>
+            </Col>
+          </Row>
 
-            <Row>
+          <Row>
+            <div>
               <div>
-                <input type="submit" value="Add Post"></input>
+                <label>
+                  How happy does this make you?
+                  <em> Choose a number on the scale...</em>
+                </label>
               </div>
-            </Row>
-          </form>
-        </Container>
-      </div>
-    );
-  }
+              <div>
+                <input
+                  name="scale"
+                  type="number"
+                  onChange={handleChange}
+                ></input>
+              </div>
+            </div>
+          </Row>
 
+          <Row>
+            <div>
+              <div>
+                <label>
+                  Why does this make you happy?{" "}
+                  <em> Write your story here...</em>
+                </label>
+              </div>
+              <div>
+                <textarea
+                  name="description"
+                  type="text"
+                  onChange={handleChange}
+                ></textarea>
+              </div>
+            </div>
+          </Row>
+
+          <Row>
+            <div>
+              <div>
+                <label>
+                  Link to my Mood Booster! <em>Click here...</em>
+                </label>
+              </div>
+              <div>
+                <input
+                  name="linkToIt"
+                  type="text"
+                  onChange={handleChange}
+                ></input>
+              </div>
+            </div>
+          </Row>
+
+          <Row>
+            <div>
+              <input type="submit" value="Add Post"></input>
+            </div>
+          </Row>
+        </form>
+      </Container>
+    </div>
+  );
+}

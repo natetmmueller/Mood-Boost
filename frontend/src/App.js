@@ -20,7 +20,6 @@ export default class App extends Component {
     message: null,
   };
 
-
   componentDidMount() {
     let token = localStorage.getItem("token");
 
@@ -51,7 +50,6 @@ export default class App extends Component {
         console.log(error);
       });
   };
-
 
   registerHandler = (user) => {
     Axios.post("auth/signup", user)
@@ -137,7 +135,6 @@ export default class App extends Component {
           </nav> */}
           <div>
             <Routes>
-
               {this.state.isAuth ? (
                 <>
                   <Route
@@ -149,6 +146,7 @@ export default class App extends Component {
                     element={<Signin login={this.loginHandler} />}
                   ></Route>
                   <Route path="/post/index" element={<PostIndex />}></Route>
+                  <Route path="/post/add" element={<PostCreate />}></Route>
 
                   <Route
                     path="/profile"
@@ -171,7 +169,6 @@ export default class App extends Component {
                   {/* <Navigate to="/post/index" replace={true}/> */}
                 </>
               )}
-
             </Routes>
           </div>
         </Router>
