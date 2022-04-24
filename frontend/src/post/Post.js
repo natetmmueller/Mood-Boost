@@ -54,20 +54,18 @@ export default class Post extends Component {
                 <td>{this.props.linkToIt}</td>
                 <td>
                     <Card.Footer className="cardFooter">
+                        {/* i know i need to send it to a specific ID im just not sure how to do that yet */}
                         <Link to="/post/:id">
                             <Button variant="info" className="lm postButton">
                                 Learn More
                             </Button>
                         </Link>
                         
-
-                        <Button variant="info" className="edit postButton"
-                            onClick={() => {
-                            this.props.editView(this.props._id);
-                            }}
-                        >
-                            Edit
-                        </Button>
+                        <Link to="/post/all">
+                            <Button variant="info" className="edit postButton">
+                                Edit
+                            </Button>
+                        </Link>
 
                         <Button variant="info" className="del postButton"
                             onClick={() => {

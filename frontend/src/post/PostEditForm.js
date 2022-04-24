@@ -1,56 +1,54 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import { Row, Col, Container } from "react-bootstrap";
 import Axios from "axios";
 
-export default class PostCreate extends Component {
+export default class PostEditForm extends Component {
+    constructor(props) {
+      super(props)
+    
+      this.state = {
+         newPost: props.post
+      }
+    }
 
-  constructor(props) {
-    super(props);
+    handleChange = (event) => {
+        const attributeToChange = event.target.name;
+        const newValue = event.target.value;
+    
+        const post = { ...this.state.newPost };
+        post[attributeToChange] = newValue;
+    
+        this.setState({
+          newPost: post,
+        });
+      };
+    
+      handleSubmit = (event) => {
+        event.preventDefault();
+        this.editPost(this.state.newPost);
+      };
+    
+    
+      editPost = (post) => {
+        Axios.put("all", post, {
+          // headers: {
+          //   Authorization: "Bearer " + localStorage.getItem("token"),
+          // },
+        })
+          .then((response) => {
+            console.log("Post Added successfully!");
+            this.loadPostIndex();
+          })
+          .catch((error) => {
+            console.log("Error Adding Post");
+            console.log(error);
+          });
+      };
 
-    this.state = {
-      newPost: {},
-    };
-  }
-
-  handleChange = (event) => {
-    const attributeToChange = event.target.name;
-    const newValue = event.target.value;
-
-    const post = { ...this.state.newPost };
-    post[attributeToChange] = newValue;
-
-    this.setState({
-      newPost: post,
-    });
-  };
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    this.addPost(this.state.newPost);
-  };
-
-
-  addPost = (post) => {
-    Axios.post("add", post, {
-      // headers: {
-      //   Authorization: "Bearer " + localStorage.getItem("token"),
-      // },
-    })
-      .then((response) => {
-        console.log("Post Added successfully!");
-        this.loadPostIndex();
-      })
-      .catch((error) => {
-        console.log("Error Adding Post");
-        console.log(error);
-      });
-  };
-  
 
   render() {
-    console.log(this.state.newPost);
     return (
-      <div>
+        <div>
         <Container>
           <h1>Create Post</h1>
 
@@ -67,6 +65,7 @@ export default class PostCreate extends Component {
                     <input
                       name="postTitle"
                       type="text"
+                      value={this.state.newAuthor.postTitle}
                       onChange={this.handleChange}
                     ></input>
                   </div>
@@ -86,6 +85,7 @@ export default class PostCreate extends Component {
                   <input
                     name="scale"
                     type="number"
+                    value={this.state.newAuthor.scale}
                     onChange={this.handleChange}
                   ></input>
                 </div>
@@ -104,6 +104,7 @@ export default class PostCreate extends Component {
                   <textarea
                     name="description"
                     type="text"
+                    value={this.state.newAuthor.description}
                     onChange={this.handleChange}
                   ></textarea>
                 </div>
@@ -121,6 +122,7 @@ export default class PostCreate extends Component {
                   <input
                     name="linkToIt"
                     type="text"
+                    value={this.state.newAuthor.linkToIt}
                     onChange={this.handleChange}
                   ></input>
                 </div>
@@ -129,12 +131,12 @@ export default class PostCreate extends Component {
 
             <Row>
               <div>
-                <input type="submit" value="Add Post"></input>
+                <input type="submit" value="Edit Post"></input>
               </div>
             </Row>
           </form>
         </Container>
       </div>
-    );
+    )
   }
 }
