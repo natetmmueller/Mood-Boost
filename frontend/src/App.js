@@ -13,6 +13,7 @@ import Axios from "axios";
 // import { Post } from "../../../backend/models/Post";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import jwt_decode from 'jwt-decode'
+import PostDetail from "./post/PostDetail";
 
 
 export default class App extends Component {
@@ -135,6 +136,7 @@ export default class App extends Component {
                     <>
                     <Route path="/post/add" element={<PostCreate />}></Route>
                     <Route path="/post/index" element={<PostIndex />}></Route>
+                    <Route path="/post/:id" element={<PostDetail />}></Route>
                     {/* <Navigate to="/post/index" replace={true}/> */}
                   </>
                   

@@ -32,7 +32,6 @@ export default class PostIndex extends Component {
       });
   };
 
-
   render() {
     console.log(this.state);
     const allPosts = this.state.posts.map((post, index) => {

@@ -46,8 +46,10 @@ exports.post_index = (req, res) => {
 
 //detail page of a post
 exports.showPost = async (req, res) => {
+    console.log(req.params.id)
     try {
         let post = await Post.findById(req.params.id).populate('user');
+
         res.status(200).json(post);
 
       } catch(err){
