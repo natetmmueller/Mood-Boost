@@ -1,5 +1,6 @@
 import { Axios } from "axios";
 import React, { Component } from "react";
+
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -43,6 +44,10 @@ export default class Post extends Component {
     //     let path = '/post/:id'
     //     navigate(path)
     // }
+
+export default class Post extends Component {
+  render() {
+
     return (
 
         <Card className="cards" border="warning" style={{ width: '18rem' }}>

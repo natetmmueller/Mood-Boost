@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import Post from "./Post";
-import PostCreate from "./PostCreate";
+
 // import { Post } from "../../../backend/models/Post";
 
 export default class PostIndex extends Component {
@@ -32,12 +32,30 @@ export default class PostIndex extends Component {
       });
   };
 
+
+  deletePost = (id) => {
+    Axios.delete(`/post/delete?id=${id}`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => {
+        console.log("Deleted Post!!!");
+        this.loadPostIndex();
+      })
+      .catch((error) => {
+        console.log("Error Deleting Post");
+        console.log(error);
+      });
+  };
+
+
   render() {
     console.log(this.state);
     const allPosts = this.state.posts.map((post, index) => {
       return (
-        <tr key={index}>
-          <Post {...post}></Post>
+        <tr key={post._id}>
+          <Post {...post} deletePost={this.deletePost}></Post>
         </tr>
       );
     });

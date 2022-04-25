@@ -1,140 +1,126 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import Axios from "axios";
+import { useNavigate } from "react-router";
 
-export default class PostCreate extends Component {
+export default function PostCreate(props) {
+  const [newPost, setNewPost] = useState(null);
+  const navigate = useNavigate();
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      newPost: {},
-    };
-  }
-
-  handleChange = (event) => {
+  const handleChange = (event) => {
     const attributeToChange = event.target.name;
     const newValue = event.target.value;
 
-    const post = { ...this.state.newPost };
+    const post = { ...newPost };
     post[attributeToChange] = newValue;
 
-    this.setState({
-      newPost: post,
-    });
+    setNewPost(post);
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    this.addPost(this.state.newPost);
-  };
-
-
-  addPost = (post) => {
-    Axios.post("add", post, {
-      // headers: {
-      //   Authorization: "Bearer " + localStorage.getItem("token"),
-      // },
-    })
+  const addPost = (post) => {
+    Axios.post("/post/add", post)
       .then((response) => {
         console.log("Post Added successfully!");
-        this.loadPostIndex();
       })
       .catch((error) => {
         console.log("Error Adding Post");
         console.log(error);
       });
   };
-  
 
-  render() {
-    console.log(this.state.newPost);
-    return (
-      <div>
-        <Container>
-          <h1>Create Post</h1>
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    addPost(newPost);
+    navigate("/post/index");
+  };
 
-          <form onSubmit={this.handleSubmit}>
-            <Row>
-              <Col>
-                <div>
-                  <div>
-                    <label>
-                      What makes you happy? <em> Title of post goes here...</em>
-                    </label>
-                  </div>
-                  <div>
-                    <input
-                      name="postTitle"
-                      type="text"
-                      onChange={this.handleChange}
-                    ></input>
-                  </div>
-                </div>
-              </Col>
-            </Row>
 
-            <Row>
+  return (
+    <div>
+      <Container>
+        <h1>Create Post</h1>
+
+
+        <form onSubmit={handleSubmit}>
+          <Row>
+            <Col>
               <div>
                 <div>
                   <label>
-                    How happy does this make you?
-                    <em> Choose a number on the scale...</em>
+                    What makes you happy? <em> Title of post goes here...</em>
                   </label>
                 </div>
                 <div>
                   <input
-                    name="scale"
-                    type="number"
-                    onChange={this.handleChange}
+                    name="postTitle"
+                    type="text"
+                    onChange={handleChange}
                   ></input>
                 </div>
               </div>
-            </Row>
+            </Col>
+          </Row>
 
-            <Row>
+          <Row>
+            <div>
               <div>
-                <div>
-                  <label>
-                    Why does this make you happy?{" "}
-                    <em> Write your story here...</em>
-                  </label>
-                </div>
-                <div>
-                  <textarea
-                    name="description"
-                    type="text"
-                    onChange={this.handleChange}
-                  ></textarea>
-                </div>
+                <label>
+                  How happy does this make you?
+                  <em> Choose a number on the scale...</em>
+                </label>
               </div>
-            </Row>
+              <div>
+                <input
+                  name="scale"
+                  type="number"
+                  onChange={handleChange}
+                ></input>
+              </div>
+            </div>
+          </Row>
 
-            <Row>
+          <Row>
+            <div>
               <div>
-                <div>
-                  <label>
-                    Link to my Mood Booster! <em>Click here...</em>
-                  </label>
-                </div>
-                <div>
-                  <input
-                    name="linkToIt"
-                    type="text"
-                    onChange={this.handleChange}
-                  ></input>
-                </div>
+                <label>
+                  Why does this make you happy?{" "}
+                  <em> Write your story here...</em>
+                </label>
               </div>
-            </Row>
+              <div>
+                <textarea
+                  name="description"
+                  type="text"
+                  onChange={handleChange}
+                ></textarea>
+              </div>
+            </div>
+          </Row>
 
-            <Row>
+          <Row>
+            <div>
               <div>
-                <input type="submit" value="Add Post"></input>
+                <label>
+                  Link to my Mood Booster! <em>Click here...</em>
+                </label>
               </div>
-            </Row>
-          </form>
-        </Container>
-      </div>
-    );
-  }
+              <div>
+                <input
+                  name="linkToIt"
+                  type="text"
+                  onChange={handleChange}
+                ></input>
+              </div>
+            </div>
+          </Row>
+
+          <Row>
+            <div>
+              <input type="submit" value="Add Post"></input>
+            </div>
+          </Row>
+        </form>
+      </Container>
+    </div>
+  );
 }
