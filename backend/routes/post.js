@@ -17,7 +17,7 @@ const postCntrl = require("../controllers/post");
 //routes
 router.get("/post/index", postCntrl.post_index);
 
-router.post("/post/add", postCntrl.addPost);
+router.post("/post/add", isLoggedIn, postCntrl.addPost);
 
 router.put("/post/edit", postCntrl.postEdit);
 

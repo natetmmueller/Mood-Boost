@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Signup from "./user/Signup";
 import Signin from "./user/Signin";
 import PostCreate from "./post/PostCreate";
-import './App.css';
+import "./App.css";
 import "./index.css";
 import UserProfile from "./user/UserProfile";
 
@@ -13,10 +13,8 @@ import Axios from "axios";
 // import { Post } from "../../../backend/models/Post";
 import { Navbar, Container, Nav } from "react-bootstrap";
 
-import jwt_decode from 'jwt-decode'
+import jwt_decode from "jwt-decode";
 import PostDetail from "./post/PostDetail";
-
-
 
 export default class App extends Component {
   state = {
@@ -85,6 +83,16 @@ export default class App extends Component {
     console.log(this.state);
   };
 
+  logoutHandler = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    this.setState({
+      isAuth: false,
+      user: null,
+      message: "User logged out successfully!!!",
+    });
+  };
+
   render() {
     console.log(this.state.user);
     console.log(this.state.isAuth);
@@ -106,17 +114,18 @@ export default class App extends Component {
                     <Link to="/post/index" style={linkStyle}>
                       Home
                     </Link>
-                    <Link to="/signup" style={linkStyle}>
-                      Sign Up
-                    </Link>
-                    <Link to="/signin" style={linkStyle}>
-                      Sign In
-                    </Link>
                     <Link to="/profile" style={linkStyle}>
                       My Profile
                     </Link>
                     <Link to="/post/add" style={linkStyle}>
                       Add Post
+                    </Link>
+                    <Link
+                      to="/logout"
+                      style={linkStyle}
+                      onClick={this.logoutHandler}
+                    >
+                      Logout
                     </Link>
                   </>
                 ) : (
@@ -127,19 +136,17 @@ export default class App extends Component {
                     <Link to="/post/add" style={linkStyle}>
                       Add Post
                     </Link>
+                    <Link to="/signup" style={linkStyle}>
+                      Sign Up
+                    </Link>
+                    <Link to="/signin" style={linkStyle}>
+                      Sign In
+                    </Link>
                   </>
                 )}
               </Nav>
             </Container>
           </Navbar>
-          {/* <nav bg="primary" variant="dark">
-            <div>
-              <Link to="post/all">Home</Link>{" "}
-              <Link to="signup">Signup</Link>{" "}
-              
-              <Link to="signin">Signin</Link>{" "}
-            </div>
-          </nav> */}
           <div>
             <Routes>
               {this.state.isAuth ? (
@@ -154,7 +161,6 @@ export default class App extends Component {
                   ></Route>
                   <Route path="/post/index" element={<PostIndex />}></Route>
                   <Route path="/post/add" element={<PostCreate />}></Route>
-
 
                   <Route
                     path="/profile"
@@ -171,6 +177,14 @@ export default class App extends Component {
                 </>
               ) : (
                 <>
+                  <Route
+                    path="/signup"
+                    element={<Signup signupAccount={this.registerHandler} />}
+                  ></Route>
+                  <Route
+                    path="/signin"
+                    element={<Signin login={this.loginHandler} />}
+                  ></Route>
                   <Route path="/post/add" element={<PostCreate />}></Route>
                   <Route path="/post/index" element={<PostIndex />}></Route>
                   <Route path="/post/:id" element={<PostDetail />}></Route>
