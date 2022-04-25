@@ -2,7 +2,8 @@ import { Axios } from "axios";
 import React, { Component } from "react";
 
 import { Card, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import PostDetail from "./PostDetail";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
 // import { Navigate, Route, Router, useNavigate } from "react-router-dom";
 // import PostDetail from "./PostDetail";
@@ -63,12 +64,16 @@ export default class Post extends Component {
                                 Learn More
                             </Button>
                         </Link>
+
                         
                         <Link to="/post/edit">
                             <Button variant="info" className="edit postButton">
                                 Edit
                             </Button>
                         </Link>
+                        {/* <Routes>
+                            <Route path="/post/:id" element={<PostDetail />}></Route>
+                        </Routes> */}
 
                         <Button variant="info" className="del postButton"
                             onClick={() => {

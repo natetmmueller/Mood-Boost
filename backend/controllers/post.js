@@ -50,7 +50,7 @@ exports.post_index = (req, res) => {
 exports.showPost = async (req, res) => {
 
   try {
-    let post = await Post.findById(req.params.id).populate("user");
+    let post = await Post.findById(req.query.id).populate("user");
     res.status(200).json(post);
   } catch (err) {
     res.status(400).json(err);

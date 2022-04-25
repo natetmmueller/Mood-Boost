@@ -26,6 +26,17 @@ export default class App extends Component {
     posts: []
   };
 
+  constructor(props) {
+    super(props)
+    let url = new URLSearchParams(window.location.search).get('id')
+     console.log(url, "url")
+  
+  //   console.log(props,"line 9 PD")
+  //     console.log(props.params,"this is the props.params")
+  //     console.log(props.match.params.id)
+  }
+      
+
   componentDidMount() {
     let token = localStorage.getItem("token");
 
@@ -85,6 +96,9 @@ export default class App extends Component {
     });
     console.log(this.state, "85");
   };
+
+  
+
 
   render() {
 
@@ -162,8 +176,8 @@ export default class App extends Component {
           
                   <Route path="/post/index" element={<PostIndex />}></Route>
                   <Route path="/post/add" element={<PostCreate />}></Route>
-                  <Route path="/post/index" element={<PostIndex />}></Route>
-                  {this.state.posts.map(post => ( <tr key={post._id}> <Route path={post.path} element={<PostDetail />} /> </tr> )  ) }
+                  <Route path="/post/:id" element={<PostDetail name={"post"}/>}></Route>
+                  {/* {this.state.posts.map(post => ( <tr key={post._id}> <Route path="/post/:id" element={<PostDetail />} /> </tr> )  ) } */}
                   
                   <Route
                     path="/profile"
