@@ -8,40 +8,6 @@ import { Link } from "react-router-dom";
 // import PostDetail from "./PostDetail";
 
 export default class Post extends Component {
-  // constructor(props) {
-  //   super(props)
-
-  //   this.state = {
-  //      currentPost: ""
-  //   }
-  // }
-
-  // getPostDetails = (id) => {
-  //     Axios.get(`/post/:id${id}`,
-  //     {
-  //         headers: {
-  //             "Authorization": "Bearer " + localStorage.getItem("token")
-  //         }
-  //     })
-  //     .then(response => {
-  //         console.log("Loaded Author Information!!")
-  //         console.log(response.data.post)
-  //         let post = response.data.post
-  //         this.setState({
-  //             currentPost: post
-  //         })
-  //     })
-  //     .catch(error => {
-  //         console.log("Error Loading Author Information!!")
-  //         console.log(error)
-  //     })
-  // }
-
-  // let postDetail = useNavigate();
-  // const routeChange = () => {
-  //     let path = '/post/:id'
-  //     navigate(path)
-  // }
 
   render() {
     return (

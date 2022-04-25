@@ -71,7 +71,7 @@ export default class PostIndex extends Component {
                   What makes you happy? <em> ? </em>
                 </th>
 
-                <th></th>
+                
               </tr>
               {allPosts}
             </tbody>
