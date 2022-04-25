@@ -18,7 +18,7 @@ export default class Post extends Component {
     // }
 
     // getPostDetails = (id) => {
-    //     Axios.get(`/post/:id${id}`,
+    //     Axios.get(`/post/:id$=${id}`,
     //     {
     //         headers: {
     //             "Authorization": "Bearer " + localStorage.getItem("token")

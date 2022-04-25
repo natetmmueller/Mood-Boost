@@ -101,7 +101,7 @@ export default class App extends Component {
           <Navbar bg="primary" variant="dark">
             <Container>
               <Nav className="me-auto">
-                {this.state.isAuth ? (
+                {this.state.isAuth ? 
                   <>
                     <Link to="/post/index" style={linkStyle}>
                       Home
@@ -112,8 +112,10 @@ export default class App extends Component {
                     <Link to="/post/add" style={linkStyle}>
                       Add Post
                     </Link>
+                    
+                    
                   </>
-                ) : (
+                 : 
                   <>
                     <Link to="/post/index" style={linkStyle}>
                       Home
@@ -125,7 +127,7 @@ export default class App extends Component {
                       Sign In
                     </Link>
                   </>
-                )}
+                }
               </Nav>
             </Container>
           </Navbar>
@@ -139,7 +141,7 @@ export default class App extends Component {
           </nav> */}
           <div>
             <Routes>
-              {this.state.isAuth ? (
+              {this.state.isAuth ? 
                 <>
           
                   <Route path="/post/index" element={<PostIndex />}></Route>
@@ -161,14 +163,15 @@ export default class App extends Component {
                   ></Route>
                   
                 </>
-              ) : (
+               : 
                 <>
+                <Route path="/post/index" element={<PostIndex />}></Route>
                   <Route path="/signup" element={<Signup signupAccount={this.registerHandler} />}></Route>
                   <Route path="/signin" element={<Signin login={this.loginHandler} />}></Route>
 
                   {/* <Navigate to="/post/index" replace={true}/> */}
                 </>
-              )}
+              }
             </Routes>
           </div>
         </Router>
