@@ -10,4 +10,14 @@ exports.profile_get = (req, res) => {
     .catch((error) => {
       console.log(error);
     });
+  if (req.user) {
+    Post.findById(req.body.id)
+      .populate()
+      .then((posts) => {
+        res.json({ posts });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 };

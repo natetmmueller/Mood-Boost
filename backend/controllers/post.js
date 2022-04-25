@@ -5,8 +5,12 @@ const moment = require("moment");
 
 //post a post
 exports.addPost = (req, res) => {
+  console.log("api called");
+  console.log(req.user.id);
   let post = new Post(req.body);
-
+  let userid = req.user.id;
+  console.log(userid);
+  post.user = userid;
   post
     .save()
     .then(() => {
@@ -14,7 +18,7 @@ exports.addPost = (req, res) => {
     })
     .catch((err) => {
       console.log(err);
-      res.send("Error!");
+      // res.send("Error!");
     });
 };
 //Get all posts
@@ -44,7 +48,6 @@ exports.post_index = (req, res) => {
 
 //detail page of a post
 exports.showPost = async (req, res) => {
-
   try {
     let post = await Post.findById(req.params.id).populate("user");
     res.status(200).json(post);
@@ -52,7 +55,6 @@ exports.showPost = async (req, res) => {
     res.status(400).json(err);
   }
 };
-
 
 //add a comment
 exports.addComment = (req, res) => {
