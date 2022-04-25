@@ -32,7 +32,6 @@ export default class PostIndex extends Component {
       });
   };
 
-
   deletePost = (id) => {
     Axios.delete(`/post/delete?id=${id}`, {
       headers: {
@@ -49,7 +48,6 @@ export default class PostIndex extends Component {
       });
   };
 
-
   render() {
     console.log(this.state);
     const allPosts = this.state.posts.map((post, index) => {
@@ -65,16 +63,7 @@ export default class PostIndex extends Component {
         <h1>All the Things that Make us Happy!</h1>
         <div>
           <table>
-            <tbody>
-              <tr>
-                <th>
-                  What makes you happy? <em> ? </em>
-                </th>
-
-                
-              </tr>
-              {allPosts}
-            </tbody>
+            <tbody>{allPosts}</tbody>
           </table>
         </div>
       </div>

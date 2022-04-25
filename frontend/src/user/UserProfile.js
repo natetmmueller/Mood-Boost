@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import Post from "../post/Post";
 import Axios from "axios";
 import jwt_decode from "jwt-decode";
@@ -12,7 +12,6 @@ export default class UserProfile extends Component {
       user: props.user._id,
       firstName: props.user.name,
       posts: [],
-      // postuserid: props.posts.user.id,
     };
   }
 
@@ -52,24 +51,6 @@ export default class UserProfile extends Component {
       });
   };
 
-  // loadUserPosts = () => {
-  //   Axios.get("/profile")
-
-  //     .then((response) => {
-  //       console.log(response.data.posts);
-  //       this.setState({
-  //         posts: response.data.posts,
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log("Error Fetching All Posts!");
-  //       console.log(error);
-  //     });
-  // if (currentUser) {
-  //   this.setState({posts: esponse.data.posts})
-  // }
-  // };
-
   render() {
     console.log(this.state);
     console.log(this.state.posts);
@@ -84,21 +65,32 @@ export default class UserProfile extends Component {
       }
     });
 
-    // const allPosts = this.state.posts.map((post, index) => {
-    //   return (
-    //     <tr key={post._id}>
-    //       <Post {...post} deletePost={this.deletePost}></Post>
-    //     </tr>
-    //   );
-    // });
-
     return (
       <Container>
-        <>
+        <div class="profileTitle">
+          This is what makes <b>{this.state.firstName}</b> happy!
+        </div>
+        <Row xs={1} md={3} className="g-4">
+          {/* {Array.from({ length: 4 })}.map((_, idx) => ( */}
+          <Col>
+            <Card>
+              {this.state.userPosts}
+              {userPosts}
+            </Card>
+          </Col>
+          {/* ))} */}
+        </Row>
+      </Container>
+    );
+  }
+}
+
+{
+  /* <div class="row">
           <table>
             <tbody>
               <tr>
-                <td>
+                <td class="profileTitle">
                   This is what makes <b>{this.state.firstName}</b> happy!
                   {this.state.userPosts}
                 </td>
@@ -107,8 +99,5 @@ export default class UserProfile extends Component {
               {userPosts}
             </tbody>
           </table>
-        </>
-      </Container>
-    );
-  }
+        </div> */
 }
