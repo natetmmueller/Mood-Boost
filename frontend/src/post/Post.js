@@ -38,14 +38,12 @@ export default class Post extends Component {
     //     })
     // }
 
-  render() {
     // let postDetail = useNavigate();
     // const routeChange = () => {
     //     let path = '/post/:id'
     //     navigate(path)
     // }
 
-export default class Post extends Component {
   render() {
 
     return (
