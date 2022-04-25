@@ -106,12 +106,6 @@ export default class App extends Component {
                     <Link to="/post/index" style={linkStyle}>
                       Home
                     </Link>
-                    <Link to="/signup" style={linkStyle}>
-                      Sign Up
-                    </Link>
-                    <Link to="/signin" style={linkStyle}>
-                      Sign In
-                    </Link>
                     <Link to="/profile" style={linkStyle}>
                       My Profile
                     </Link>
@@ -124,8 +118,11 @@ export default class App extends Component {
                     <Link to="/post/index" style={linkStyle}>
                       Home
                     </Link>
-                    <Link to="/post/add" style={linkStyle}>
-                      Add Post
+                    <Link to="/signup" style={linkStyle}>
+                      Sign Up
+                    </Link>
+                    <Link to="/signin" style={linkStyle}>
+                      Sign In
                     </Link>
                   </>
                 )}
@@ -144,18 +141,12 @@ export default class App extends Component {
             <Routes>
               {this.state.isAuth ? (
                 <>
-                  <Route
-                    path="/signup"
-                    element={<Signup signupAccount={this.registerHandler} />}
-                  ></Route>
-                  <Route
-                    path="/signin"
-                    element={<Signin login={this.loginHandler} />}
-                  ></Route>
+          
                   <Route path="/post/index" element={<PostIndex />}></Route>
                   <Route path="/post/add" element={<PostCreate />}></Route>
-
-
+                  <Route path="/post/index" element={<PostIndex />}></Route>
+                  <Route path="/post/:id" element={<PostDetail />}></Route>
+                  
                   <Route
                     path="/profile"
                     element={
@@ -168,12 +159,12 @@ export default class App extends Component {
                       ) : null
                     }
                   ></Route>
+                  
                 </>
               ) : (
                 <>
-                  <Route path="/post/add" element={<PostCreate />}></Route>
-                  <Route path="/post/index" element={<PostIndex />}></Route>
-                  <Route path="/post/:id" element={<PostDetail />}></Route>
+                  <Route path="/signup" element={<Signup signupAccount={this.registerHandler} />}></Route>
+                  <Route path="/signin" element={<Signin login={this.loginHandler} />}></Route>
 
                   {/* <Navigate to="/post/index" replace={true}/> */}
                 </>
