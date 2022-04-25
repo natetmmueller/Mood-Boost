@@ -38,14 +38,13 @@ export default class Post extends Component {
     //     })
     // }
 
-  render() {
+
     // let postDetail = useNavigate();
     // const routeChange = () => {
     //     let path = '/post/:id'
     //     navigate(path)
     // }
 
-export default class Post extends Component {
   render() {
 
     return (
@@ -66,8 +65,10 @@ export default class Post extends Component {
                             </Button>
                         </Link>
                         
-                        <Link to="/post/edit">
-                            <Button variant="info" className="edit postButton">
+                        <Link to={`/post/edit/${this.props._id}`}>
+                            <Button variant="info" className="edit postButton"
+                            onClick={() => {this.props.editView(this.props._id)}}
+                            >
                                 Edit
                             </Button>
                         </Link>
@@ -88,3 +89,4 @@ export default class Post extends Component {
     );
   }
 }
+
