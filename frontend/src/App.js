@@ -23,6 +23,7 @@ export default class App extends Component {
     isAuth: false,
     user: null,
     message: null,
+    posts: []
   };
 
   componentDidMount() {
@@ -82,18 +83,33 @@ export default class App extends Component {
       });
       // console.log(response.data.token);
     });
-    console.log(this.state);
+    console.log(this.state, "85");
   };
 
   render() {
-    console.log(this.state.user);
-    console.log(this.state.isAuth);
+
+
+    console.log(this.state.user, "89");
+    console.log(this.state.isAuth, "90");
     const linkStyle = {
       margin: "1rem",
       textDecoration: "none",
       color: "white",
     };
     console.log(this.state, "Hi!");
+
+    // const postDetails = this.state.posts.map((post) => {
+      
+    //   return (
+        
+    //     <tr key={post._id}>
+    //       <Route path={post.path} element={<PostDetail />}></Route>
+    //     </tr>
+    //   );
+    // });
+
+    
+
     return (
       <div>
         {/* You can create links to your components with link tag - see below */}
@@ -147,7 +163,7 @@ export default class App extends Component {
                   <Route path="/post/index" element={<PostIndex />}></Route>
                   <Route path="/post/add" element={<PostCreate />}></Route>
                   <Route path="/post/index" element={<PostIndex />}></Route>
-                  <Route path="/post/:id" element={<PostDetail />}></Route>
+                  {this.state.posts.map(post => ( <tr key={post._id}> <Route path={post.path} element={<PostDetail />} /> </tr> )  ) }
                   
                   <Route
                     path="/profile"

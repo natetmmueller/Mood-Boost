@@ -7,7 +7,7 @@ export default class PostEditForm extends Component {
       super(props)
     
       this.state = {
-         newPost: props.post
+         newPost: this.props.post
       }
     }
 

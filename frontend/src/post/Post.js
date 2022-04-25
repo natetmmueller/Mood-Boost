@@ -45,7 +45,7 @@ export default class Post extends Component {
     // }
 
   render() {
-
+    let postLink = `/post/${this.props._id}`
     return (
 
         <Card className="cards" border="warning" style={{ width: '18rem' }}>
@@ -58,7 +58,7 @@ export default class Post extends Component {
                 <td>
                     <Card.Footer className="cardFooter">
                         {/* i know i need to send it to a specific ID im just not sure how to do that yet */}
-                        <Link to="/post/:id">
+                        <Link to={postLink}>
                             <Button variant="info" className="lm postButton">
                                 Learn More
                             </Button>

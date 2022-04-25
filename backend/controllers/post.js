@@ -24,6 +24,10 @@ exports.post_index = (req, res) => {
     // res.render('routes/allPost', {posts})
     //instead of rendering a view i nedd to render via React
     .then((posts) => {
+        for (let post of posts){
+            post.path = `/post/${post._id}`
+            post.save()
+        }
       res.json({ posts });
     })
     .catch((error) => {

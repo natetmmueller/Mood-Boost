@@ -3,16 +3,15 @@ import { Container } from 'react-bootstrap'
 
 export default class PostDetail extends Component {
 
-    constructor(props) {
-      super(props);
     
-      this.state = {
-        title: props.postTitle,
-        scale: props.scale,
-        description: props.description,
-        link: props.linkToIt
+    
+    state = {
+        title: this.props.postTitle,
+        scale: this.props.scale,
+        description: this.props.description,
+        link: this.props.linkToIt
       };
-    }
+    
 
 
   render() {
