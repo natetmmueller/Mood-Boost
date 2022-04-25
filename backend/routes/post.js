@@ -19,7 +19,7 @@ router.get("/post/index", postCntrl.post_index);
 
 router.post("/post/add", postCntrl.addPost);
 
-router.put("/post/all", postCntrl.postEdit);
+router.put("/post/edit", postCntrl.postEdit);
 
 router.delete("/post/delete/:id", postCntrl.deletePost);
 

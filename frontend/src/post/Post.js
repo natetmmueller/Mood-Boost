@@ -61,7 +61,7 @@ export default class Post extends Component {
                             </Button>
                         </Link>
                         
-                        <Link to="/post/all">
+                        <Link to="/post/edit">
                             <Button variant="info" className="edit postButton">
                                 Edit
                             </Button>
