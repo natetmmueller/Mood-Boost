@@ -34,10 +34,12 @@ export default function PostCreate(props) {
     navigate("/post/index");
   };
 
+
   return (
     <div>
       <Container>
         <h1>Create Post</h1>
+
 
         <form onSubmit={handleSubmit}>
           <Row>
@@ -50,7 +52,7 @@ export default function PostCreate(props) {
                 </div>
                 <div>
                   <input
-                    name="name"
+                    name="postTitle"
                     type="text"
                     onChange={handleChange}
                   ></input>

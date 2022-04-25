@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Signup from "./user/Signup";
 import Signin from "./user/Signin";
 import PostCreate from "./post/PostCreate";
+import './App.css';
 import "./index.css";
 import UserProfile from "./user/UserProfile";
 
@@ -11,7 +12,11 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Axios from "axios";
 // import { Post } from "../../../backend/models/Post";
 import { Navbar, Container, Nav } from "react-bootstrap";
-import jwt_decode from "jwt-decode";
+
+import jwt_decode from 'jwt-decode'
+import PostDetail from "./post/PostDetail";
+
+
 
 export default class App extends Component {
   state = {
@@ -150,6 +155,7 @@ export default class App extends Component {
                   <Route path="/post/index" element={<PostIndex />}></Route>
                   <Route path="/post/add" element={<PostCreate />}></Route>
 
+
                   <Route
                     path="/profile"
                     element={
@@ -167,6 +173,7 @@ export default class App extends Component {
                 <>
                   <Route path="/post/add" element={<PostCreate />}></Route>
                   <Route path="/post/index" element={<PostIndex />}></Route>
+                  <Route path="/post/:id" element={<PostDetail />}></Route>
 
                   {/* <Navigate to="/post/index" replace={true}/> */}
                 </>

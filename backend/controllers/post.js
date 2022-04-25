@@ -44,6 +44,7 @@ exports.post_index = (req, res) => {
 
 //detail page of a post
 exports.showPost = async (req, res) => {
+
   try {
     let post = await Post.findById(req.params.id).populate("user");
     res.status(200).json(post);
@@ -51,6 +52,7 @@ exports.showPost = async (req, res) => {
     res.status(400).json(err);
   }
 };
+
 
 //add a comment
 exports.addComment = (req, res) => {
