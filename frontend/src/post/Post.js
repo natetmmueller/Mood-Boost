@@ -8,44 +8,59 @@ import { Link } from "react-router-dom";
 // import PostDetail from "./PostDetail";
 
 export default class Post extends Component {
-
   render() {
     return (
-      <Card className="cards" border="warning" style={{ width: "18rem" }}>
-        <>
-          <Card.Header>{this.props.postTitle}</Card.Header>
+      <div class="row">
+        <Card className="cards" border="warning" style={{ width: "20rem" }}>
+          <>
+            <div class="text-center">
+              <Card.Header>{this.props.postTitle}</Card.Header>
+            </div>
 
-          <td>{this.props.scale}</td>
-          <td>{this.props.description}</td>
-          <td>{this.props.linkToIt}</td>
-          <td>
-            <Card.Footer className="cardFooter">
-              {/* i know i need to send it to a specific ID im just not sure how to do that yet */}
-              <Link to="/post/:id">
-                <Button variant="info" className="lm postButton">
-                  Learn More
+            <td>
+              <b>Happy Score: </b>
+              {this.props.scale}
+            </td>
+            <td>
+              <b>My Story: </b>
+              {this.props.description}
+            </td>
+            <td>
+              <b>Link: </b>
+              {this.props.linkToIt}
+            </td>
+            <td>
+              <Card.Footer className="cardFooter">
+                {/* i know i need to send it to a specific ID im just not sure how to do that yet */}
+                <Link to="/post/:id">
+                  <Button variant="info" className="lm postButton">
+                    Learn More
+                  </Button>
+                </Link>
+
+                <Link to="/post/edit">
+                  <Button variant="info" className="edit postButton">
+                    Edit
+                  </Button>
+                </Link>
+
+                <Button
+                  variant="info"
+                  className="del postButton"
+                  onClick={() => {
+                    this.props.deletePost(this.props._id);
+                  }}
+                >
+                  Delete
                 </Button>
-              </Link>
-
-              <Link to="/post/edit">
-                <Button variant="info" className="edit postButton">
-                  Edit
-                </Button>
-              </Link>
-
-              <Button
-                variant="info"
-                className="del postButton"
-                onClick={() => {
-                  this.props.deletePost(this.props._id);
-                }}
-              >
-                Delete
-              </Button>
-            </Card.Footer>
-          </td>
-        </>
-      </Card>
+                <td>
+                  <b> Posted by: </b> {this.props.user.firstName}
+                </td>
+              </Card.Footer>
+            </td>
+          </>
+        </Card>
+      </div>
     );
   }
 }

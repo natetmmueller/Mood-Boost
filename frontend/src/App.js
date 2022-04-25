@@ -106,63 +106,58 @@ export default class App extends Component {
       <div>
         {/* You can create links to your components with link tag - see below */}
         <Router>
-          <Navbar bg="primary" variant="dark">
-            <Container>
-              <Nav className="me-auto">
-                {this.state.isAuth ? 
-                  <>
-                    <Link to="/post/index" style={linkStyle}>
-                      Home
-                    </Link>
-                    <Link to="/profile" style={linkStyle}>
-                      My Profile
-                    </Link>
-                    <Link to="/post/add" style={linkStyle}>
-                      Add Post
-                    </Link>
+          <Container>
+            <Nav className="me-auto" class="navbar fixed-top">
+              {this.state.isAuth ? (
+                <>
+                  <Link to="/post/index" style={linkStyle}>
+                    Home
+                  </Link>
+                  <Link to="/profile" style={linkStyle}>
+                    My Profile
+                  </Link>
+                  <Link to="/post/add" style={linkStyle}>
+                    Add Post
+                  </Link>
 
-                    <Link
-                      to="/logout"
-                      style={linkStyle}
-                      onClick={this.logoutHandler}
-                    >
-                      Logout
-                    </Link>
+                  <Link
+                    to="/logout"
+                    style={linkStyle}
+                    onClick={this.logoutHandler}
+                  >
+                    Logout
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/post/index" style={linkStyle}>
+                    Home
+                  </Link>
+                  <Link to="/signup" style={linkStyle}>
+                    Sign Up
+                  </Link>
+                  <Link to="/signin" style={linkStyle}>
+                    Sign In
+                  </Link>
+                  <Link to="/signup" style={linkStyle}>
+                    Sign Up
+                  </Link>
+                  <Link to="/signin" style={linkStyle}>
+                    Sign In
+                  </Link>
+                </>
+              )}
+            </Nav>
+          </Container>
 
-                  </>
-                 : 
-                  <>
-                    <Link to="/post/index" style={linkStyle}>
-                      Home
-                    </Link>
-                    <Link to="/signup" style={linkStyle}>
-                      Sign Up
-                    </Link>
-                    <Link to="/signin" style={linkStyle}>
-                      Sign In
-                    </Link>
-                    <Link to="/signup" style={linkStyle}>
-                      Sign Up
-                    </Link>
-                    <Link to="/signin" style={linkStyle}>
-                      Sign In
-                    </Link>
-                  </>
-                }
-              </Nav>
-            </Container>
-          </Navbar>
           <div>
             <Routes>
-              {this.state.isAuth ? 
+              {this.state.isAuth ? (
                 <>
-          
                   <Route path="/post/index" element={<PostIndex />}></Route>
                   <Route path="/post/add" element={<PostCreate />}></Route>
 
-                  
                   <Route path="/post/:id" element={<PostDetail />}></Route>
-                  
 
                   <Route
                     path="/profile"
@@ -176,11 +171,9 @@ export default class App extends Component {
                       ) : null
                     }
                   ></Route>
-                  
                 </>
-               : 
+              ) : (
                 <>
-
                   <Route
                     path="/signup"
                     element={<Signup signupAccount={this.registerHandler} />}
@@ -193,10 +186,9 @@ export default class App extends Component {
                   <Route path="/post/index" element={<PostIndex />}></Route>
                   <Route path="/post/:id" element={<PostDetail />}></Route>
 
-
                   {/* <Navigate to="/post/index" replace={true}/> */}
                 </>
-              }
+              )}
             </Routes>
           </div>
         </Router>
