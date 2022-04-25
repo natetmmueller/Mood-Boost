@@ -32,43 +32,6 @@ export default class PostIndex extends Component {
       });
   };
 
-  editView = (id) => {
-    Axios.get((`post/edit?id=${id}`), {
-      headers: {
-        "Authorization": "Bearer " + localStorage.getItem("token")
-      }
-    })
-    .then(response => {
-      console.log("Loaded Post Information")
-      console.log(response.data.post)
-      let post = response.data.post
-      this.setState({
-        isEdit: true,
-        currentPost: post
-      })
-    })
-    .catch(error => {
-      console.log("error loading post information")
-      console.log(error)
-    })
-  }
-
-  editPost = (post) => {
-    Axios.put("post/update",  post, {
-      // headers: {
-      //   "Authorization": "Bearer " + localStorage.getItem("token")
-      // }
-    })
-    .then( response => {
-      console.log(response)
-      this.loadPostIndex();
-    })
-    .catch(error => {
-      console.log("Error updating post")
-      console.log(error)
-    })
-  }
-
 
   deletePost = (id) => {
     Axios.delete(`/post/delete?id=${id}`, {
@@ -86,7 +49,6 @@ export default class PostIndex extends Component {
       });
   };
 
-
   render() {
     console.log(this.state);
     const allPosts = this.state.posts.map((post, index) => {
@@ -102,16 +64,7 @@ export default class PostIndex extends Component {
         <h1>All the Things that Make us Happy!</h1>
         <div>
           <table>
-            <tbody>
-              <tr>
-                <th>
-                  What makes you happy? <em> ? </em>
-                </th>
-
-                <th></th>
-              </tr>
-              {allPosts}
-            </tbody>
+            <tbody>{allPosts}</tbody>
           </table>
         </div>
       </div>
