@@ -32,6 +32,7 @@ export default class PostIndex extends Component {
       });
   };
 
+
   deletePost = (id) => {
     Axios.delete(`/post/delete?id=${id}`, {
       headers: {

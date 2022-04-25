@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 // import PostDetail from "./PostDetail";
 
 export default class Post extends Component {
+
   render() {
     return (
       <div class="row">
@@ -38,6 +39,7 @@ export default class Post extends Component {
                   </Button>
                 </Link>
 
+
                 <Link to="/post/edit">
                   <Button variant="info" className="edit postButton">
                     Edit
@@ -54,9 +56,36 @@ export default class Post extends Component {
                   Delete
                 </Button>
                 <td>
+
+                    <Card.Footer className="cardFooter">
+                        {/* i know i need to send it to a specific ID im just not sure how to do that yet */}
+                        <Link to="/post/:id">
+                            <Button variant="info" className="lm postButton">
+                                Learn More
+                            </Button>
+                        </Link>
+                        
+                        <Link to={`/post/edit/${this.props._id}`}>
+                            <Button variant="info" className="edit postButton"
+                            onClick={() => {this.props.editView(this.props._id)}}
+                            >
+                                Edit
+                            </Button>
+                        </Link>
+
+                        <Button variant="info" className="del postButton"
+                            onClick={() => {
+                            this.props.deletePost(this.props._id);
+                            }}
+                        >
+                            Delete
+                        </Button>
+                    </ Card.Footer>
+
                   <b> Posted by: </b> {this.props.user.firstName}
                 </td>
               </Card.Footer>
+
             </td>
           </>
         </Card>
@@ -64,3 +93,4 @@ export default class Post extends Component {
     );
   }
 }
+

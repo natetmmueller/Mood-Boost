@@ -15,6 +15,7 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 
 import jwt_decode from "jwt-decode";
 import PostDetail from "./post/PostDetail";
+import PostEditForm from "./post/PostEditForm";
 
 export default class App extends Component {
   state = {
@@ -156,6 +157,7 @@ export default class App extends Component {
                 <>
                   <Route path="/post/index" element={<PostIndex />}></Route>
                   <Route path="/post/add" element={<PostCreate />}></Route>
+                  <Route path="/post/edit/:id" element={<PostEditForm />}></Route>
 
                   <Route path="/post/:id" element={<PostDetail />}></Route>
 
