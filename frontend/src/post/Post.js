@@ -14,7 +14,7 @@ export default class Post extends Component {
     let postLink = `/post/${this.props._id}`
     return (
 
-        <Card className="cards" border="warning" style={{ width: '18rem' }}>
+        <Card bg="warning" className="cards" border="warning" style={{ width: '18rem' }}>
             <>
                 <Card.Header>{this.props.postTitle}</Card.Header>
             

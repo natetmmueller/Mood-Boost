@@ -52,6 +52,7 @@ export default function Signup(props) {
             onChange={changeHandler}
           ></Form.Control>
         </Form.Group>
+        <br />
         <Button varient="primary" onClick={signupHandler}>
           Register
         </Button>

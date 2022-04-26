@@ -117,6 +117,7 @@ export default class App extends Component {
       textDecoration: "none",
       color: "white",
     };
+    
     console.log(this.state, "Hi!");
 
     // const postDetails = this.state.posts.map((post) => {

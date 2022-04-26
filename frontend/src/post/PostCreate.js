@@ -76,6 +76,8 @@ export default function PostCreate(props) {
                 <input
                   name="scale"
                   type="number"
+                  min={1}
+                  max={10}
                   onChange={handleChange}
                 ></input>
               </div>
