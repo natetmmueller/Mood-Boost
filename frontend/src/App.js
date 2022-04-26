@@ -18,12 +18,13 @@ import PostDetail from "./post/PostDetail";
 import PostEditForm from "./post/PostEditForm";
 
 export default class App extends Component {
+
   state = {
     isAuth: false,
     user: null,
     message: null,
     posts: [],
-    newPostAdded: false
+    postEdited: false,
   };
 
   constructor(props) {
@@ -107,22 +108,16 @@ export default class App extends Component {
     });
   };
 
-
-  handleNewPostSubmission = (incomingBool) => {
-    this.setState({
-      newPostAdded: incomingBool
-    })
+  handleEdit = (incoming) => {
+    this.setState({postEdited: incoming})
   }
-
 
   loadPostIndex = () => {
     Axios.get("/post/index")
-
       .then((response) => {
-        console.log(response.data.posts);
+        
         this.setState({
           posts: response.data.posts,
-          newPostAdded: !this.state.newPostAdded
         });
       })
       .catch((error) => {
@@ -132,17 +127,15 @@ export default class App extends Component {
   };
 
   render() {
-
-
-    console.log(this.state.user, "89");
-    console.log(this.state.isAuth, "90");
+    // console.log(this.state.user, "89");
+    // console.log(this.state.isAuth, "90");
     const linkStyle = {
       margin: "1rem",
       textDecoration: "none",
       color: "white",
     };
     
-    console.log(this.state, "Hi!");
+    // console.log(this.state, "Hi!");
 
     // const postDetails = this.state.posts.map((post) => {
       
@@ -161,7 +154,7 @@ export default class App extends Component {
         {/* You can create links to your components with link tag - see below */}
         <Router>
           <Container>
-            <Nav className="me-auto" class="navbar fixed-top">
+            <Nav className="me-auto" className="navbar fixed-top">
               {this.state.isAuth ? (
                 <>
                   <Link to="/post/index" style={linkStyle}>
@@ -175,7 +168,7 @@ export default class App extends Component {
                   </Link>
 
                   <Link
-                    to="/logout"
+                    to="/signin"
                     style={linkStyle}
                     onClick={this.logoutHandler}
                   >
@@ -202,10 +195,10 @@ export default class App extends Component {
             <Routes>
               {this.state.isAuth ? (
                 <>
-                  <Route path="/post/index" element={<PostIndex loadPostIndex={this.loadPostIndex} newPostAdded={this.state.newPostAdded} posts={this.state.posts} handleNewPostSubmission={this.handleNewPostSubmission} />}></Route>
-                  <Route path="/post/add" element={<PostCreate loadPostIndex={this.loadPostIndex} handleNewPostSubmission={this.handleNewPostSubmission} />}></Route>
+                  <Route path="/post/index" element={<PostIndex user={this.state.user} postEdited={this.state.postEdited} loadPostIndex={this.loadPostIndex} posts={this.state.posts} />}></Route>
+                  <Route path="/post/add" element={<PostCreate loadPostIndex={this.loadPostIndex} />}></Route>
 
-                  <Route path="/post/edit/:id" element={<PostEditForm loadPostIndex={this.loadPostIndex} newPostAdded={this.state.newPostAdded} handleNewPostSubmission={this.handleNewPostSubmission} />}></Route>
+                  <Route path="/post/edit/:id" element={<PostEditForm loadPostIndex={this.loadPostIndex} postEdited={this.state.postEdited} handleEdit={this.handleEdit} />}></Route>
 
                   <Route path="/post/:id" element={<PostDetail name={"post"}/>}></Route>
 
@@ -233,9 +226,6 @@ export default class App extends Component {
                     path="/signin"
                     element={<Signin login={this.loginHandler} />}
                   ></Route>
-                  <Route path="/post/add" element={<PostCreate />}></Route>
-                  <Route path="/post/index" element={<PostIndex />}></Route>
-                  <Route path="/post/:id" element={<PostDetail />}></Route>
 
                   {/* <Navigate to="/post/index" replace={true}/> */}
                 </>

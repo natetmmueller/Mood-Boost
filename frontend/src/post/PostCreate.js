@@ -37,10 +37,7 @@ export default function PostCreate(props) {
     event.preventDefault();
     addPost(newPost);
     props.loadPostIndex()
-    props.handleNewPostSubmission(true)
     navigate("/post/index");
-    props.handleNewPostSubmission(false)
-
   };
 
   return (
