@@ -2,7 +2,7 @@ const { User } = require("../models/User");
 const { Post } = require("../models/Post");
 
 const moment = require("moment");
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 //post a post
 exports.addPost = (req, res) => {
@@ -29,10 +29,10 @@ exports.post_index = (req, res) => {
     // res.render('routes/allPost', {posts})
     //instead of rendering a view i nedd to render via React
     .then((posts) => {
-        for (let post of posts){
-            post.path = `/post/${post._id}`
-            post.save()
-        }
+      for (let post of posts) {
+        post.path = `/post/${post._id}`;
+        post.save();
+      }
       res.json({ posts });
     })
     .catch((error) => {
@@ -88,28 +88,28 @@ exports.addComment = async (req, res) => {
 //   }
 // };
 
-// load post edit form 
-exports.postEdit = (req, res) =>{
-    Post.findById(req.params.id)
+// load post edit form
+exports.postEdit = (req, res) => {
+  Post.findById(req.params.id)
     .then((post) => {
-        res.json({post})
+      res.json({ post });
     })
-    .catch(err => {
-        console.log(err);
-    })
-}
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
-// post update 
+// post update
 exports.postUpdate = (req, res) => {
-    console.log('00', req.body._id)
-    Post.findByIdAndUpdate(req.body._id, req.body, {new: true})
+  console.log("00", req.body._id);
+  Post.findByIdAndUpdate(req.body._id, req.body, { new: true })
     .then((post) => {
-        res.json({post})
+      res.json({ post });
     })
-    .catch(err => {
-        console.log(err);
-    })
-}
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 //deleting the post
 // exports.deletePost = (req, res) => {

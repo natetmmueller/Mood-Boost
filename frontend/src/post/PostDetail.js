@@ -34,22 +34,26 @@ export default function PostDetail(props) {
   return (
     <Container>
         <> {post&&
+        
         <div>
-            <td><b>{post.postTitle}</b> makes me happy!</td>
-            <br/>
-            <td> It makes me <b>{post.scale}</b>/10 happy!</td>
-            <br/>
-            <td> why does it make me happy? <b>{post.description}</b></td>
-            <br/>
-            <td> Click here to see it: <b>{post.linkToIt}</b></td>
-            <br/>
-            <br/>
-            Comments
+
+            
+            <h1><b>{post.postTitle}</b> makes me happy!</h1>
+            
+            <h1> It makes me <b>{post.scale}</b>/10 happy!</h1>
+            
+            <h1> why does it make me happy?</h1>
+            <h1>{post.description}</h1>
+            
+            <h1> Click here to see it: <b>{post.linkToIt}</b></h1>
+        
+            Comments:
             <br>
             </br>
             {/* <b>{post.comments.forEach(comment => <li>{{comment.comment}}</li>)}</b> */}
             {comment && <div> {comment.map((e)=> (<li>{e.comment} <button>delete</button></li>))} </div>
             }
+
             <br/> 
             <PostComments />
         </div>

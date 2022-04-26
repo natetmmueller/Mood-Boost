@@ -97,6 +97,7 @@ exports.auth_signin_post = async (req, res) => {
       (err, token) => {
         if (err) throw err;
         res.json({ token }).status(200);
+        console.log("token");
       }
     );
   } catch (error) {

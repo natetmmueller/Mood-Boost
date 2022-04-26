@@ -22,40 +22,48 @@ export default class App extends Component {
     isAuth: false,
     user: null,
     message: null,
-    posts: []
+    posts: [],
   };
 
   constructor(props) {
-    super(props)
-    let url = new URLSearchParams(window.location.search).get('id')
-     console.log(url, "url")
-  
-  //   console.log(props,"line 9 PD")
-  //     console.log(props.params,"this is the props.params")
-  //     console.log(props.match.params.id)
-  }
-      
+    super(props);
+    let url = new URLSearchParams(window.location.search).get("id");
+    console.log(url, "url");
 
-  componentDidMount() {
-    let token = localStorage.getItem("token");
-
-    if (token != null) {
-      let user = jwt_decode(token);
-      let post = jwt_decode(token);
-      if (user) {
-        this.setState({
-          isAuth: true,
-          user: user,
-          post: post,
-        });
-      } else {
-        localStorage.removeItem("token");
-        this.setState({
-          isAuth: false,
-        });
-      }
-    }
+    //   console.log(props,"line 9 PD")
+    //     console.log(props.params,"this is the props.params")
+    //     console.log(props.match.params.id)
   }
+
+  // componentDidMount() {
+  //   if (!localStorage.getItem("token")) {
+  //     console.log("No token.");
+  //     // setTimeout(() => {
+  //     //   window.location.href = "/signup";
+  //     // }, 100000);
+  //     // <Redirect to="/signup" />;
+
+  //     // window.location.href = "/signup";
+  //   }
+  //   let token = localStorage.getItem("token");
+
+  //   if (token != null) {
+  //     let user = jwt_decode(token);
+  //     let post = jwt_decode(token);
+  //     if (user) {
+  //       this.setState({
+  //         isAuth: true,
+  //         user: user,
+  //         post: post,
+  //       });
+  //     } else {
+  //       localStorage.removeItem("token");
+  //       this.setState({
+  //         isAuth: false,
+  //       });
+  //     }
+  //   }
+  // }
 
   loadUserProfile = (id) => {
     Axios.get("profile")
@@ -86,7 +94,7 @@ export default class App extends Component {
       console.log(token);
       localStorage.setItem("token", token);
       let user = jwt_decode(token);
-
+      // To do: check that if there is no token, set isAuth: false, and user: null
       this.setState({
         isAuth: true,
         user: user,
@@ -106,10 +114,7 @@ export default class App extends Component {
     });
   };
 
-
   render() {
-
-
     console.log(this.state.user, "89");
     console.log(this.state.isAuth, "90");
     const linkStyle = {
@@ -117,19 +122,18 @@ export default class App extends Component {
       textDecoration: "none",
       color: "white",
     };
+
     console.log(this.state, "Hi!");
 
     // const postDetails = this.state.posts.map((post) => {
-      
+
     //   return (
-        
+
     //     <tr key={post._id}>
     //       <Route path={post.path} element={<PostDetail />}></Route>
     //     </tr>
     //   );
     // });
-
-    
 
     return (
       <div>
@@ -160,7 +164,7 @@ export default class App extends Component {
               ) : (
                 <>
                   <Link to="/post/index" style={linkStyle}>
-                    Home
+                    Posts
                   </Link>
                   <Link to="/signup" style={linkStyle}>
                     Sign Up
@@ -177,24 +181,34 @@ export default class App extends Component {
             <Routes>
               {this.state.isAuth ? (
                 <>
-                  <Route path="/post/index" element={<PostIndex />}></Route>
+                  <Route
+                    path="/post/index"
+                    element={<PostIndex user={this.state.user} />}
+                  ></Route>
                   <Route path="/post/add" element={<PostCreate />}></Route>
 
-                  <Route path="/post/edit/:id" element={<PostEditForm />}></Route>
+                  <Route
+                    path="/post/edit/:id"
+                    element={<PostEditForm />}
+                  ></Route>
 
-                  <Route path="/post/:id" element={<PostDetail name={"post"}/>}></Route>
-
+                  <Route
+                    path="/post/:id"
+                    element={<PostDetail name={"post"} />}
+                  ></Route>
 
                   <Route
                     path="/profile"
                     element={
-                      this.state.isAuth ? (
-                        <UserProfile
-                          user={this.state.user.user}
-                          lastName={this.state.user.lastName}
-                          emailAddress={this.state.user.emailAddress}
-                        />
-                      ) : null
+                      // this.state.isAuth ? (
+                      <UserProfile
+                        user={this.state.user}
+                        lastName={this.state.user.lastName}
+                        emailAddress={this.state.user.emailAddress}
+                      />
+                      // ) : (
+                      //   <p>User logged out</p>
+                      // )
                     }
                   ></Route>
                 </>
@@ -209,7 +223,10 @@ export default class App extends Component {
                     element={<Signin login={this.loginHandler} />}
                   ></Route>
                   <Route path="/post/add" element={<PostCreate />}></Route>
-                  <Route path="/post/index" element={<PostIndex />}></Route>
+                  <Route
+                    path="/post/index"
+                    element={<PostIndex user={this.state.user} />}
+                  ></Route>
                   <Route path="/post/:id" element={<PostDetail />}></Route>
 
                   {/* <Navigate to="/post/index" replace={true}/> */}

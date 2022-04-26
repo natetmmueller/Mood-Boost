@@ -38,7 +38,7 @@
 }
 
 .card-footer {
-  background-color: rgb(255, 165, 61);
+  background-color: rgb(255, 165, 61) !important;
 }
 
 .postButton {
@@ -50,6 +50,8 @@
   margin: 2px;
   padding: 10px;
   display: inline-block;
+  color: white;
+  opacity: 0.7;
 }
 
 h1 {
