@@ -107,7 +107,7 @@ export default class UserProfile extends Component {
           <table>
             <tbody>
               <tr>
-                <td class="profileTitle">
+                <td "profileTitle">
                   This is what makes <b>{this.state.firstName}</b> happy!
                   {this.state.userPosts}
                 </td>

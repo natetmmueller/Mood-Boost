@@ -35,26 +35,35 @@ export default class App extends Component {
     //     console.log(props.match.params.id)
   }
 
-  componentDidMount() {
-    let token = localStorage.getItem("token");
+  // componentDidMount() {
+  //   if (!localStorage.getItem("token")) {
+  //     console.log("No token.");
+  //     // setTimeout(() => {
+  //     //   window.location.href = "/signup";
+  //     // }, 100000);
+  //     // <Redirect to="/signup" />;
 
-    if (token != null) {
-      let user = jwt_decode(token);
-      let post = jwt_decode(token);
-      if (user) {
-        this.setState({
-          isAuth: true,
-          user: user,
-          post: post,
-        });
-      } else {
-        localStorage.removeItem("token");
-        this.setState({
-          isAuth: false,
-        });
-      }
-    }
-  }
+  //     // window.location.href = "/signup";
+  //   }
+  //   let token = localStorage.getItem("token");
+
+  //   if (token != null) {
+  //     let user = jwt_decode(token);
+  //     let post = jwt_decode(token);
+  //     if (user) {
+  //       this.setState({
+  //         isAuth: true,
+  //         user: user,
+  //         post: post,
+  //       });
+  //     } else {
+  //       localStorage.removeItem("token");
+  //       this.setState({
+  //         isAuth: false,
+  //       });
+  //     }
+  //   }
+  // }
 
   loadUserProfile = (id) => {
     Axios.get("profile")
@@ -155,7 +164,7 @@ export default class App extends Component {
               ) : (
                 <>
                   <Link to="/post/index" style={linkStyle}>
-                    Home
+                    Posts
                   </Link>
                   <Link to="/signup" style={linkStyle}>
                     Sign Up

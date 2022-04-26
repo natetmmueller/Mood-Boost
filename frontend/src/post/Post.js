@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 export default class Post extends Component {
   render() {
     let postLink = `/post/${this.props._id}`;
+    console.log(this.props.user);
     return (
       <Card
         bg="warning"
