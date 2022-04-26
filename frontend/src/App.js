@@ -117,6 +117,7 @@ export default class App extends Component {
       textDecoration: "none",
       color: "white",
     };
+    
     console.log(this.state, "Hi!");
 
     // const postDetails = this.state.posts.map((post) => {
@@ -161,12 +162,6 @@ export default class App extends Component {
                 <>
                   <Link to="/post/index" style={linkStyle}>
                     Home
-                  </Link>
-                  <Link to="/signup" style={linkStyle}>
-                    Sign Up
-                  </Link>
-                  <Link to="/signin" style={linkStyle}>
-                    Sign In
                   </Link>
                   <Link to="/signup" style={linkStyle}>
                     Sign Up
