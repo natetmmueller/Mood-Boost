@@ -15,6 +15,7 @@ export default function PostEditForm(props) {
     let params = useParams()
     console.log(params)
 
+
     const [editSamePost, setEditSamePost] = useState('')
     const navigate = useNavigate();
     

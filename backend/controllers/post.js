@@ -29,6 +29,10 @@ exports.post_index = (req, res) => {
     // res.render('routes/allPost', {posts})
     //instead of rendering a view i nedd to render via React
     .then((posts) => {
+        for (let post of posts){
+            post.path = `/post/${post._id}`
+            post.save()
+        }
       res.json({ posts });
     })
     .catch((error) => {
@@ -50,7 +54,7 @@ exports.post_index = (req, res) => {
 //detail page of a post
 exports.showPost = async (req, res) => {
   try {
-    let post = await Post.findById(req.params.id).populate("user");
+    let post = await Post.findById(req.query.id).populate("user");
     res.status(200).json(post);
   } catch (err) {
     res.status(400).json(err);

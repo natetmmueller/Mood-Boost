@@ -10,6 +10,7 @@ const commentSchema = mongoose.Schema ({
 
 const postSchema = mongoose.Schema ({
     postTitle: String,
+    path: String,
     scale: Number,
     description: String,
     linkToIt: String,

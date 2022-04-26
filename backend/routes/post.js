@@ -25,7 +25,7 @@ router.put("/post/update", postCntrl.postUpdate);
 
 router.delete("/post/delete", postCntrl.deletePost);
 
-router.get("/post/:id", postCntrl.showPost);
+router.get("/post", postCntrl.showPost);
 
 router.post("/post/:id/comments", postCntrl.addComment);
 
