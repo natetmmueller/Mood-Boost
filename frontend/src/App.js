@@ -168,12 +168,6 @@ export default class App extends Component {
                   <Link to="/signin" style={linkStyle}>
                     Sign In
                   </Link>
-                  <Link to="/signup" style={linkStyle}>
-                    Sign Up
-                  </Link>
-                  <Link to="/signin" style={linkStyle}>
-                    Sign In
-                  </Link>
                 </>
               )}
             </Nav>
