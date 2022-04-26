@@ -57,7 +57,10 @@ export default function PostEditForm(props) {
       const handleSubmit = (event) => {
         event.preventDefault();
         editPost(editSamePost);
+        props.loadPostIndex()
+        props.handleNewPostSubmission(!props.newPostAdded)
         navigate("/post/index");
+        props.handleNewPostSubmission(!props.newPostAdded)
       };
     
     
@@ -69,7 +72,7 @@ export default function PostEditForm(props) {
         })
           .then((response) => {
             console.log("Post Added successfully!");
-            this.loadPostIndex();
+            props.handleNewPostSubmission(!props.newPostAdded)
           })
           .catch((error) => {
             console.log("Error Adding Post");

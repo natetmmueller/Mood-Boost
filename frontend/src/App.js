@@ -22,7 +22,8 @@ export default class App extends Component {
     isAuth: false,
     user: null,
     message: null,
-    posts: []
+    posts: [],
+    newPostAdded: false
   };
 
   constructor(props) {
@@ -107,6 +108,29 @@ export default class App extends Component {
   };
 
 
+  handleNewPostSubmission = (incomingBool) => {
+    this.setState({
+      newPostAdded: incomingBool
+    })
+  }
+
+
+  loadPostIndex = () => {
+    Axios.get("/post/index")
+
+      .then((response) => {
+        console.log(response.data.posts);
+        this.setState({
+          posts: response.data.posts,
+          newPostAdded: !this.state.newPostAdded
+        });
+      })
+      .catch((error) => {
+        console.log("Error Fetching All Posts!");
+        console.log(error);
+      });
+  };
+
   render() {
 
 
@@ -178,10 +202,10 @@ export default class App extends Component {
             <Routes>
               {this.state.isAuth ? (
                 <>
-                  <Route path="/post/index" element={<PostIndex />}></Route>
-                  <Route path="/post/add" element={<PostCreate />}></Route>
+                  <Route path="/post/index" element={<PostIndex loadPostIndex={this.loadPostIndex} newPostAdded={this.state.newPostAdded} posts={this.state.posts} handleNewPostSubmission={this.handleNewPostSubmission} />}></Route>
+                  <Route path="/post/add" element={<PostCreate loadPostIndex={this.loadPostIndex} handleNewPostSubmission={this.handleNewPostSubmission} />}></Route>
 
-                  <Route path="/post/edit/:id" element={<PostEditForm />}></Route>
+                  <Route path="/post/edit/:id" element={<PostEditForm loadPostIndex={this.loadPostIndex} newPostAdded={this.state.newPostAdded} handleNewPostSubmission={this.handleNewPostSubmission} />}></Route>
 
                   <Route path="/post/:id" element={<PostDetail name={"post"}/>}></Route>
 

@@ -1,39 +1,36 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import Post from "./Post";
 
 // import { Post } from "../../../backend/models/Post";
 
-export default class PostIndex extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      posts: [],
-    };
-  }
+export default function PostIndex(props){
+  const [posts, setPosts] = useState(props.posts)
+  const [newPostAdded, setNewPostAdded] = useState(props.newPostAdded)
 
-  componentDidMount() {
-    this.loadPostIndex();
-  }
+  // constructor(props) {
+  //   super(props);
 
-  loadPostIndex = () => {
-    Axios.get("/post/index")
+  //   this.state = {
+  //     posts: [],
+  //      newPostAdded: this.props.newPostAdded
+      
+  //   };
+  // }
 
-      .then((response) => {
-        console.log(response.data.posts);
-        this.setState({
-          posts: response.data.posts,
-        });
-      })
-      .catch((error) => {
-        console.log("Error Fetching All Posts!");
-        console.log(error);
-      });
-  };
+  // componentDidMount() {
+  //   console.log(this,"props console")
+  //   this.props.loadPostIndex();
+    
+  // }
+  useEffect(() => {
+    props.loadPostIndex()
+  }, [])
+  
 
 
-  deletePost = (id) => {
+  const deletePost = (id) => {
     Axios.delete(`/post/delete?id=${id}`, {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -41,7 +38,7 @@ export default class PostIndex extends Component {
     })
       .then((response) => {
         console.log("Deleted Post!!!");
-        this.loadPostIndex();
+        props.loadPostIndex();
       })
       .catch((error) => {
         console.log("Error Deleting Post");
@@ -49,12 +46,11 @@ export default class PostIndex extends Component {
       });
   };
 
-  render() {
-    console.log(this.state);
-    const allPosts = this.state.posts.map((post, index) => {
+  
+    const allPosts = posts.map((post, index) => {
       return (
         <tr key={post._id}>
-          <Post {...post} deletePost={this.deletePost}></Post>
+          <Post {...post} deletePost={deletePost}></Post>
         </tr>
       );
     });
@@ -69,5 +65,4 @@ export default class PostIndex extends Component {
         </div>
       </div>
     );
-  }
 }
