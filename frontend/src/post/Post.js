@@ -30,16 +30,6 @@ export default class Post extends Component {
                             </Button>
                         </Link>
 
-                        
-                        <Link to="/post/edit">
-                            <Button variant="info" className="edit postButton">
-                                Edit
-                            </Button>
-                        </Link>
-                        {/* <Routes>
-                            <Route path="/post/:id" element={<PostDetail />}></Route>
-                        </Routes> */}
-
                 <Link to={`/post/edit/${this.props._id}`}>
                             <Button variant="info" className="edit postButton"
                             onClick={() => {this.props.editView(this.props._id)}}
@@ -67,7 +57,7 @@ export default class Post extends Component {
             </td>
           </>
         </Card>
-      </div>
+      
     );
   }
 }
