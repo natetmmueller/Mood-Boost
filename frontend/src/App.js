@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Signup from "./user/Signup";
 import Signin from "./user/Signin";
 import PostCreate from "./post/PostCreate";
-import './App.css';
+import "./App.css";
 import "./index.css";
 import UserProfile from "./user/UserProfile";
 
@@ -13,10 +13,9 @@ import Axios from "axios";
 // import { Post } from "../../../backend/models/Post";
 import { Navbar, Container, Nav } from "react-bootstrap";
 
-import jwt_decode from 'jwt-decode'
+import jwt_decode from "jwt-decode";
 import PostDetail from "./post/PostDetail";
-
-
+import PostEditForm from "./post/PostEditForm";
 
 export default class App extends Component {
   state = {
@@ -97,7 +96,15 @@ export default class App extends Component {
     console.log(this.state, "85");
   };
 
-  
+  logoutHandler = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    this.setState({
+      isAuth: false,
+      user: null,
+      message: "User logged out successfully!!!",
+    });
+  };
 
 
   render() {
@@ -128,57 +135,62 @@ export default class App extends Component {
       <div>
         {/* You can create links to your components with link tag - see below */}
         <Router>
-          <Navbar bg="primary" variant="dark">
-            <Container>
-              <Nav className="me-auto">
-                {this.state.isAuth ? 
-                  <>
-                    <Link to="/post/index" style={linkStyle}>
-                      Home
-                    </Link>
-                    <Link to="/profile" style={linkStyle}>
-                      My Profile
-                    </Link>
-                    <Link to="/post/add" style={linkStyle}>
-                      Add Post
-                    </Link>
-                    
-                    
-                  </>
-                 : 
-                  <>
-                    <Link to="/post/index" style={linkStyle}>
-                      Home
-                    </Link>
-                    <Link to="/signup" style={linkStyle}>
-                      Sign Up
-                    </Link>
-                    <Link to="/signin" style={linkStyle}>
-                      Sign In
-                    </Link>
-                  </>
-                }
-              </Nav>
-            </Container>
-          </Navbar>
-          {/* <nav bg="primary" variant="dark">
-            <div>
-              <Link to="post/all">Home</Link>{" "}
-              <Link to="signup">Signup</Link>{" "}
-              
-              <Link to="signin">Signin</Link>{" "}
-            </div>
-          </nav> */}
+          <Container>
+            <Nav className="me-auto" class="navbar fixed-top">
+              {this.state.isAuth ? (
+                <>
+                  <Link to="/post/index" style={linkStyle}>
+                    Home
+                  </Link>
+                  <Link to="/profile" style={linkStyle}>
+                    My Profile
+                  </Link>
+                  <Link to="/post/add" style={linkStyle}>
+                    Add Post
+                  </Link>
+
+                  <Link
+                    to="/logout"
+                    style={linkStyle}
+                    onClick={this.logoutHandler}
+                  >
+                    Logout
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/post/index" style={linkStyle}>
+                    Home
+                  </Link>
+                  <Link to="/signup" style={linkStyle}>
+                    Sign Up
+                  </Link>
+                  <Link to="/signin" style={linkStyle}>
+                    Sign In
+                  </Link>
+                  <Link to="/signup" style={linkStyle}>
+                    Sign Up
+                  </Link>
+                  <Link to="/signin" style={linkStyle}>
+                    Sign In
+                  </Link>
+                </>
+              )}
+            </Nav>
+          </Container>
+
           <div>
             <Routes>
-              {this.state.isAuth ? 
+              {this.state.isAuth ? (
                 <>
-          
                   <Route path="/post/index" element={<PostIndex />}></Route>
                   <Route path="/post/add" element={<PostCreate />}></Route>
+
+                  <Route path="/post/edit/:id" element={<PostEditForm />}></Route>
+
                   <Route path="/post/:id" element={<PostDetail name={"post"}/>}></Route>
-                  {/* {this.state.posts.map(post => ( <tr key={post._id}> <Route path="/post/:id" element={<PostDetail />} /> </tr> )  ) } */}
-                  
+
+
                   <Route
                     path="/profile"
                     element={
@@ -191,17 +203,24 @@ export default class App extends Component {
                       ) : null
                     }
                   ></Route>
-                  
                 </>
-               : 
+              ) : (
                 <>
-                <Route path="/post/index" element={<PostIndex />}></Route>
-                  <Route path="/signup" element={<Signup signupAccount={this.registerHandler} />}></Route>
-                  <Route path="/signin" element={<Signin login={this.loginHandler} />}></Route>
+                  <Route
+                    path="/signup"
+                    element={<Signup signupAccount={this.registerHandler} />}
+                  ></Route>
+                  <Route
+                    path="/signin"
+                    element={<Signin login={this.loginHandler} />}
+                  ></Route>
+                  <Route path="/post/add" element={<PostCreate />}></Route>
+                  <Route path="/post/index" element={<PostIndex />}></Route>
+                  <Route path="/post/:id" element={<PostDetail />}></Route>
 
                   {/* <Navigate to="/post/index" replace={true}/> */}
                 </>
-              }
+              )}
             </Routes>
           </div>
         </Router>

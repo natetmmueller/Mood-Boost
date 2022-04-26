@@ -37,16 +37,40 @@
   }
 }
 
-.card-footer{
+.card-footer {
   background-color: rgb(255, 165, 61);
 }
 
-.postButton{
+.postButton {
   margin: 2px;
   border-radius: 10px;
 }
 
-.cards{
+.cards {
   margin: 2px;
+  padding: 10px;
   display: inline-block;
+}
+
+h1 {
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 20px;
+  font-family: "Lato", sans-serif;
+}
+
+.navbar {
+  background-color: #282c34;
+  font-family: "Lato", sans-serif;
+}
+
+.font-link {
+  font-family: "Lato", sans-serif;
+}
+
+.profileTitle {
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 20px;
+  font-family: "Lato", sans-serif;
 }

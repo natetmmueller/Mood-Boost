@@ -12,5 +12,6 @@ router.use(express.json());
 const profileCntrl = require("../controllers/profile");
 
 router.get("/profile", profileCntrl.profile_get);
+router.post("/profile", profileCntrl.profile_create_post);
 
 module.exports = router;

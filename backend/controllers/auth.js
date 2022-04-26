@@ -106,9 +106,8 @@ exports.auth_signin_post = async (req, res) => {
 
 // HTTP GET - Logout - to logout the user
 
-// exports.auth_logout_get = (req, res) => {
-//   // This will clear the session
-//   req.logout();
-//   req.flash("success", "You are successfully logged out");
-//   res.redirect("/auth/signin");
-// };
+exports.auth_logout_get = (req, res) => {
+  req.logout();
+  req.flash("success", "You are successfully logged out");
+  res.redirect("/auth/signin");
+};

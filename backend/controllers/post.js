@@ -2,11 +2,16 @@ const { User } = require("../models/User");
 const { Post } = require("../models/Post");
 
 const moment = require("moment");
+const mongoose = require("mongoose")
 
 //post a post
 exports.addPost = (req, res) => {
+  console.log("api called");
+  console.log(req.user.id);
   let post = new Post(req.body);
-
+  let userid = req.user.id;
+  console.log(userid);
+  post.user = userid;
   post
     .save()
     .then(() => {
@@ -14,7 +19,7 @@ exports.addPost = (req, res) => {
     })
     .catch((err) => {
       console.log(err);
-      res.send("Error!");
+      // res.send("Error!");
     });
 };
 //Get all posts
@@ -48,7 +53,6 @@ exports.post_index = (req, res) => {
 
 //detail page of a post
 exports.showPost = async (req, res) => {
-
   try {
     let post = await Post.findById(req.query.id).populate("user");
     res.status(200).json(post);
@@ -56,7 +60,6 @@ exports.showPost = async (req, res) => {
     res.status(400).json(err);
   }
 };
-
 
 //add a comment
 exports.addComment = (req, res) => {
@@ -71,14 +74,37 @@ exports.addComment = (req, res) => {
   }
 };
 
-exports.postEdit = (req, res) => {
-  try {
-    let update = Post.findByIdAndUpdate(req.body.id, req.body);
-    res.status(200).send("Done");
-  } catch (err) {
-    res.status(400).json(err);
-  }
-};
+// exports.postEdit = (req, res) => {
+//   try {
+//     let update = Post.findByIdAndUpdate(req.body.id, req.body);
+//     res.status(200).json(update);
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// };
+
+// load post edit form 
+exports.postEdit = (req, res) =>{
+    Post.findById(req.params.id)
+    .then((post) => {
+        res.json({post})
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
+// post update 
+exports.postUpdate = (req, res) => {
+    console.log('00', req.body._id)
+    Post.findByIdAndUpdate(req.body._id, req.body, {new: true})
+    .then((post) => {
+        res.json({post})
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
 
 //deleting the post
 // exports.deletePost = (req, res) => {

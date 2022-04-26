@@ -18,7 +18,12 @@ export default function PostCreate(props) {
   };
 
   const addPost = (post) => {
-    Axios.post("/post/add", post)
+    Axios.post("/post/add", post, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+
       .then((response) => {
         console.log("Post Added successfully!");
       })
@@ -34,12 +39,10 @@ export default function PostCreate(props) {
     navigate("/post/index");
   };
 
-
   return (
     <div>
       <Container>
         <h1>Create Post</h1>
-
 
         <form onSubmit={handleSubmit}>
           <Row>

@@ -8,42 +8,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 // import { Navigate, Route, Router, useNavigate } from "react-router-dom";
 // import PostDetail from "./PostDetail";
 
-
 export default class Post extends Component {
-    // constructor(props) {
-    //   super(props)
-    
-    //   this.state = {
-    //      currentPost: ""
-    //   }
-    // }
-
-    // getPostDetails = (id) => {
-    //     Axios.get(`/post/:id$=${id}`,
-    //     {
-    //         headers: {
-    //             "Authorization": "Bearer " + localStorage.getItem("token")
-    //         }
-    //     })
-    //     .then(response => {
-    //         console.log("Loaded Author Information!!")
-    //         console.log(response.data.post)
-    //         let post = response.data.post
-    //         this.setState({
-    //             currentPost: post
-    //         })
-    //     })
-    //     .catch(error => {
-    //         console.log("Error Loading Author Information!!")
-    //         console.log(error)
-    //     })
-    // }
-
-    // let postDetail = useNavigate();
-    // const routeChange = () => {
-    //     let path = '/post/:id'
-    //     navigate(path)
-    // }
 
   render() {
     let postLink = `/post/${this.props._id}`
@@ -75,19 +40,35 @@ export default class Post extends Component {
                             <Route path="/post/:id" element={<PostDetail />}></Route>
                         </Routes> */}
 
-                        <Button variant="info" className="del postButton"
-                            onClick={() => {
-                            this.props.deletePost(this.props._id);
-                            }}
-                        >
-                            Delete
-                        </Button>
-                    </ Card.Footer>
-                    
+                <Link to={`/post/edit/${this.props._id}`}>
+                            <Button variant="info" className="edit postButton"
+                            onClick={() => {this.props.editView(this.props._id)}}
+                            >
+                    Edit
+                  </Button>
+                </Link>
+
+                <Button
+                  variant="info"
+                  className="del postButton"
+                  onClick={() => {
+                    this.props.deletePost(this.props._id);
+                  }}
+                >
+                  Delete
+                </Button>
+             
+
+                  {/* <b> Posted by: </b> {this.props.user.firstName} */}
+                
+              </Card.Footer>
+
+
             </td>
-        
-            </>
-      </Card>
+          </>
+        </Card>
+      </div>
     );
   }
 }
+

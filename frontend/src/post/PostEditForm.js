@@ -1,36 +1,68 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Row, Col, Container } from "react-bootstrap";
 import Axios from "axios";
+import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router";
 
-export default class PostEditForm extends Component {
-    constructor(props) {
-      super(props)
+export default function PostEditForm(props) {
+    // constructor(props) {
+    //   super(props)
     
-      this.state = {
-         newPost: this.props.post
-      }
-    }
+    //   this.state = {
+    //      newPost: props.post
+    //   }
+    // }
+    let params = useParams()
+    console.log(params)
 
-    handleChange = (event) => {
+
+    const [editSamePost, setEditSamePost] = useState('')
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+      // Update the document title using the browser API
+      // document.title = `You clicked ${count} times`;
+      Axios.get((`/post/edit/${params.id}`), {
+        // headers: {
+        //   "Authorization": "Bearer " + localStorage.getItem("token")
+        // }
+      })
+      .then(response => {
+        console.log("Loaded Post Information")
+        console.log(response.data.post)
+        let post = response.data.post
+        setEditSamePost(post)
+      })
+      .catch(error => {
+        console.log("error loading post information")
+        console.log(error)
+      })
+    },[]);
+
+
+    // const [newPost, setNewPost] = useState(null);
+    
+    const handleChange = (event) => {
         const attributeToChange = event.target.name;
         const newValue = event.target.value;
     
-        const post = { ...this.state.newPost };
+        const post = { ...editSamePost };
         post[attributeToChange] = newValue;
     
-        this.setState({
-          newPost: post,
-        });
+      
+        setEditSamePost(post)
+       
       };
     
-      handleSubmit = (event) => {
+      const handleSubmit = (event) => {
         event.preventDefault();
-        this.editPost(this.state.newPost);
+        editPost(editSamePost);
+        navigate("/post/index");
       };
     
     
-      editPost = (post) => {
-        Axios.put("all", post, {
+      const editPost = (post) => {
+        Axios.put("/post/update", post, {
           // headers: {
           //   Authorization: "Bearer " + localStorage.getItem("token"),
           // },
@@ -46,13 +78,14 @@ export default class PostEditForm extends Component {
       };
 
 
-  render() {
+  // render() {
+    
     return (
         <div>
         <Container>
-          <h1>Create Post</h1>
+          <h1>Update Post</h1>
 
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <Row>
               <Col>
                 <div>
@@ -65,8 +98,8 @@ export default class PostEditForm extends Component {
                     <input
                       name="postTitle"
                       type="text"
-                      value={this.state.newAuthor.postTitle}
-                      onChange={this.handleChange}
+                      value={editSamePost.postTitle}
+                      onChange={handleChange}
                     ></input>
                   </div>
                 </div>
@@ -85,8 +118,8 @@ export default class PostEditForm extends Component {
                   <input
                     name="scale"
                     type="number"
-                    value={this.state.newAuthor.scale}
-                    onChange={this.handleChange}
+                    value={editSamePost.scale}
+                    onChange={handleChange}
                   ></input>
                 </div>
               </div>
@@ -104,8 +137,8 @@ export default class PostEditForm extends Component {
                   <textarea
                     name="description"
                     type="text"
-                    value={this.state.newAuthor.description}
-                    onChange={this.handleChange}
+                    value={editSamePost.description}
+                    onChange={handleChange}
                   ></textarea>
                 </div>
               </div>
@@ -122,8 +155,8 @@ export default class PostEditForm extends Component {
                   <input
                     name="linkToIt"
                     type="text"
-                    value={this.state.newAuthor.linkToIt}
-                    onChange={this.handleChange}
+                    value={editSamePost.linkToIt}
+                    onChange={handleChange}
                   ></input>
                 </div>
               </div>
@@ -136,7 +169,8 @@ export default class PostEditForm extends Component {
             </Row>
           </form>
         </Container>
+        post edit form
       </div>
     )
   }
-}
+// }
