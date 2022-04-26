@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import Axios from "axios";
 import Post from "./Post";
 
-// import { Post } from "../../../backend/models/Post";
-
 export default class PostIndex extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +30,6 @@ export default class PostIndex extends Component {
       });
   };
 
-
   deletePost = (id) => {
     Axios.delete(`/post/delete?id=${id}`, {
       headers: {
@@ -51,10 +48,15 @@ export default class PostIndex extends Component {
 
   render() {
     console.log(this.state);
+    console.log(this.props);
     const allPosts = this.state.posts.map((post, index) => {
       return (
         <tr key={post._id}>
-          <Post {...post} deletePost={this.deletePost}></Post>
+          <Post
+            {...post}
+            loggedInUser={this.props.user}
+            deletePost={this.deletePost}
+          ></Post>
         </tr>
       );
     });
