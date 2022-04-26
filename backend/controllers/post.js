@@ -55,6 +55,7 @@ exports.post_index = (req, res) => {
 exports.showPost = async (req, res) => {
   try {
     let post = await Post.findById(req.query.id).populate("user");
+    console.log("01",post)
     res.status(200).json(post);
   } catch (err) {
     res.status(400).json(err);
@@ -62,17 +63,21 @@ exports.showPost = async (req, res) => {
 };
 
 //add a comment
-exports.addComment = (req, res) => {
+exports.addComment = async (req, res) => {
   try {
     req.body.user = req.user;
-    let post = Post.findById(req.params.id);
+    let post = await Post.findById(req.params.id);
     post.comments.push(req.body);
     post.save();
-    res.status(200).send("Done");
+    // res.status(200).json({"done":"comment added succesfully"});
+    res.status(200).json({post});
   } catch (err) {
+      console.log(err)
     res.status(400).json(err);
   }
 };
+
+
 
 // exports.postEdit = (req, res) => {
 //   try {
