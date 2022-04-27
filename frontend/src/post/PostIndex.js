@@ -17,7 +17,7 @@ export default function PostIndex(props){
     }
     setPosts(props.posts)
     props.loadPostIndex();
-  }, [props.posts?.length, props.postEdited])
+  }, [props.posts?.length, props.postEdited, props])
 // if we put---> , props <--- in line 20 at the end its goes into a infinite loop but it does show the edit and add post automatically updating
   const deletePost = (id) => {
     Axios.delete(`/post/delete?id=${id}`, {

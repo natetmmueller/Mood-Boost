@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { useParams } from 'react-router-dom';
 import { Row, Col, Container } from "react-bootstrap";
+import { useNavigate } from "react-router";
+
 
 export default function PostComments() {
 
@@ -10,6 +12,7 @@ let params = useParams()
 
 
     const [comment, setComment] = useState('')
+    const navigate = useNavigate();
     
     // useEffect(() => {
     //   // Update the document title using the browser API
@@ -45,9 +48,15 @@ let params = useParams()
     
       const handleSubmit = (e) => {
           console.log("test")
-        // e.preventDefault();
+        e.preventDefault();
         createComment(comment);
+        let id = params.id
+        navigate(`/post/${id}`);
       };
+
+    //   useEffect(() => {
+
+    //   },[comment])
 
       const createComment = (newComment) => {
           console.log(params.id)

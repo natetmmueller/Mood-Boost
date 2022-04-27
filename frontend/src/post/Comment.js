@@ -7,25 +7,25 @@ export default function Comment(props) {
     const params = useParams()
 
     const [comment, setCommment] = useState(null)
+    const [newCommentAdded, setNewCommentAdded] = useState(false)
 
     useEffect(() => {
         Axios.get(`/post/?id=${params.id}`).then((response) => {
             setCommment(response.data.comments)
-            console.log(comment)
-            console.log(response.data.comment)
+            setNewCommentAdded(!newCommentAdded)
           })
             .catch((error) =>{
               console.log(error)
             
           })
 
-    },[])
+    },[newCommentAdded])
   
   
   
     return (
     <div>
-        {comment && <div> {comment.map((e)=> (<li>{e.comment} <button>delete</button></li>))} </div>
+        {comment && <div> {comment.map((e)=> (<li>{e.comment} </li>))} </div>
         }
     </div>
   )
