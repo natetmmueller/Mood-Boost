@@ -43,7 +43,7 @@ export default class Post extends Component {
                       className="edit postButton"
                       onClick={() => this.props.editView(this.props._id)}
                     >
-                      Edit
+                      Edit!!!
                     </Button>
                   </Link>
                   <Button
