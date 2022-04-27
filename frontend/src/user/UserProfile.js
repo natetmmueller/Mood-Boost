@@ -51,6 +51,22 @@ export default class UserProfile extends Component {
       });
   };
 
+  deletePost = (id) => {
+    Axios.delete(`/post/delete?id=${id}`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => {
+        console.log("Deleted Post!!!");
+        this.loadPostIndex();
+      })
+      .catch((error) => {
+        console.log("Error Deleting Post");
+        console.log(error);
+      });
+  };
+
   render() {
     console.log(this.state);
     console.log(this.state.posts);
@@ -59,7 +75,11 @@ export default class UserProfile extends Component {
       if (this.state.user.user.id == post.user) {
         return (
           <tr key={index}>
-            <Post {...post}></Post>
+            <Post
+              {...post}
+              deletePost={this.deletePost}
+              loggedInUser={this.props.user}
+            ></Post>
           </tr>
         );
       }
@@ -67,18 +87,15 @@ export default class UserProfile extends Component {
 
     return (
       <Container>
-        <div class="profileTitle">
-          This is what makes <b>{this.state.firstName}</b> happy!
+        <div className="profileTitle">
+          This is what makes <b>{this.props.user.user.name}</b> happy!
         </div>
         <Row xs={1} md={3} className="g-4">
-          {/* {Array.from({ length: 4 })}.map((_, idx) => ( */}
+          {/* {Array.from({ length: 4 })}.map((_, idx => ( */}
           <Col>
-            <Card>
-              {this.state.userPosts}
-              {userPosts}
-            </Card>
+            <Card>{userPosts}</Card>
           </Col>
-          {/* ))} */}
+          {/* ))) */}
         </Row>
       </Container>
     );
@@ -90,7 +107,7 @@ export default class UserProfile extends Component {
           <table>
             <tbody>
               <tr>
-                <td class="profileTitle">
+                <td "profileTitle">
                   This is what makes <b>{this.state.firstName}</b> happy!
                   {this.state.userPosts}
                 </td>
