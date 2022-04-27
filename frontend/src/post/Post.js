@@ -33,7 +33,7 @@ export default class Post extends Component {
                 <>
                   <Link to={postLink}>
                     <Button variant="info" className="lm postButton">
-                      Learn More
+                      Learn More!!!
                     </Button>
                   </Link>
 
