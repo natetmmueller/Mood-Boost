@@ -9,7 +9,7 @@ export default function PostDetail(props) {
     const params = useParams()
 
     const [post,setPost] = useState(null)
-    const [comment, setCommment] = useState(null)
+    // const [comment, setCommment] = useState(null)
 
 
     console.log(params.id)
@@ -19,9 +19,9 @@ export default function PostDetail(props) {
             console.log(response.data)
             setPost(response.data)
             console.log(post,"post")
-            setCommment(response.data.comments)
-            console.log(comment)
-            console.log(response.data.comment)
+            // setCommment(response.data.comments)
+            // console.log(comment)
+            // console.log(response.data.comment)
           })
             .catch((error) =>{
               console.log(error)
@@ -51,8 +51,9 @@ export default function PostDetail(props) {
             <br>
             </br>
             {/* <b>{post.comments.forEach(comment => <li>{{comment.comment}}</li>)}</b> */}
-            {comment && <div> {comment.map((e)=> (<li>{e.comment} <button>delete</button></li>))} </div>
-            }
+            {/* {comment && <div> {comment.map((e)=> (<li>{e.comment} <button>delete</button></li>))} </div>
+            } */}
+            <Comment />
 
             <br/> 
             <PostComments />

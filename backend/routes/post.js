@@ -29,4 +29,6 @@ router.get("/post", postCntrl.showPost);
 
 router.post("/post/:id/comments", postCntrl.addComment);
 
+// router.delete("/post/comments/delete", postCntrl.deleteComment);
+
 module.exports = router;

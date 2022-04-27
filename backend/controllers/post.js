@@ -132,3 +132,18 @@ exports.deletePost = (req, res) => {
       console.log(post);
     });
 };
+
+// exports.deleteComment = async (req, res) => {
+//     try {
+//       req.body.user = req.user;
+//       let post = await Post.findById(req.params.id);
+//       console.log('02', post)
+//       post.comments.pop(req.query.commentId);
+//       post.save();
+//       // res.status(200).json({"done":"comment added succesfully"});
+//       res.status(200).json({post});
+//     } catch (err) {
+//         console.log(err)
+//       res.status(400).json(err);
+//     }
+//   };
