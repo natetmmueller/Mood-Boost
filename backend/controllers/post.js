@@ -19,7 +19,7 @@ exports.addPost = (req, res) => {
     })
     .catch((err) => {
       console.log(err);
-      // res.send("Error!");
+    //   res.send("Error!");
     });
 };
 //Get all posts

@@ -36,6 +36,7 @@ export default function PostCreate(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     addPost(newPost);
+    props.loadPostIndex()
     navigate("/post/index");
   };
 
@@ -68,7 +69,7 @@ export default function PostCreate(props) {
             <div>
               <div>
                 <label>
-                  How happy does this make you?
+                  How happy does this make you, fr0m 1 - 10?
                   <em> Choose a number on the scale...</em>
                 </label>
               </div>
