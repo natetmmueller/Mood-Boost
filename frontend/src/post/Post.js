@@ -61,7 +61,7 @@ export default class Post extends Component {
         bg="warning"
         className="cards"
         border="warning"
-        style={{ width: "18rem" }}
+        style={{ width: "20rem" }}
       >
         <>
           <Card.Header>{this.props.postTitle}</Card.Header>
