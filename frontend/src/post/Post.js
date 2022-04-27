@@ -29,49 +29,49 @@ export default class Post extends Component {
             <Card.Footer className="cardFooter">
               {/* i know i need to send it to a specific ID im just not sure how to do that yet */}
 
-              {this.props.loggedInUser.user.id == this.props.user ? (
-                <>
-                  <Link to={postLink}>
-                    <Button variant="info" className="lm postButton">
-                      Learn More!!!
-                    </Button>
-                  </Link>
+              {/* {this.props.loggedInUser.user.id == this.props.user ? (
+                <> */}
+              <Link to={postLink}>
+                <Button variant="info" className="lm postButton">
+                  Learn More!!!
+                </Button>
+              </Link>
 
-                  <Link to={`/post/edit/${this.props._id}`}>
-                    <Button
-                      variant="info"
-                      className="edit postButton"
-                      onClick={() => this.props.editView(this.props._id)}
-                    >
-                      Edit!!!
-                    </Button>
-                  </Link>
-                  <Button
-                    variant="info"
-                    className="del postButton"
-                    onClick={() => this.props.deletePost(this.props._id)}
-                  >
-                    Delete
-                  </Button>
-                </>
+              <Link to={`/post/edit/${this.props._id}`}>
+                <Button
+                  variant="info"
+                  className="edit postButton"
+                  onClick={() => this.props.editView(this.props._id)}
+                >
+                  Edit!!!
+                </Button>
+              </Link>
+              <Button
+                variant="info"
+                className="del postButton"
+                onClick={() => this.props.deletePost(this.props._id)}
+              >
+                Delete
+              </Button>
+              {/* </>
               ) : (
-                <>
-                  <Link to={postLink}>
-                    <Button variant="info" className="lm postButton">
-                      Learn More
-                    </Button>
-                  </Link>
+                <> */}
+              <Link to={postLink}>
+                <Button variant="info" className="lm postButton">
+                  Learn More
+                </Button>
+              </Link>
 
-                  {/* <Link to={`/post/edit/${this.props._id}`}> */}
-                  <Button disabled variant="info" className="edit postButton">
-                    Edit
-                  </Button>
-                  {/* </Link> */}
-                  <Button disabled variant="info" className="del postButton">
-                    Delete
-                  </Button>
-                </>
-              )}
+              {/* <Link to={`/post/edit/${this.props._id}`}> */}
+              <Button disabled variant="info" className="edit postButton">
+                Edit
+              </Button>
+              {/* </Link> */}
+              <Button disabled variant="info" className="del postButton">
+                Delete
+              </Button>
+              {/* </>
+              )} */}
             </Card.Footer>
           </td>
         </>
