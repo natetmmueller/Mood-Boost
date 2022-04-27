@@ -15,6 +15,7 @@ router.use(express.json());
 const postCntrl = require("../controllers/post");
 
 //routes
+
 router.get("/post/index", postCntrl.post_index);
 
 router.post("/post/add", isLoggedIn, postCntrl.addPost);

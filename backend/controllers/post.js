@@ -4,6 +4,7 @@ const { Post } = require("../models/Post");
 const moment = require("moment");
 const mongoose = require("mongoose");
 
+
 //post a post
 exports.addPost = (req, res) => {
   console.log("api called");
