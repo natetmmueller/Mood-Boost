@@ -4,14 +4,58 @@ import React, { Component } from "react";
 import { Card, Button } from "react-bootstrap";
 import PostDetail from "./PostDetail";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 // import { Navigate, Route, Router, useNavigate } from "react-router-dom";
 // import PostDetail from "./PostDetail";
 
 export default class Post extends Component {
+  state = {
+    isAuth: false,
+    user: null,
+  };
+
+  // constructor(props) {
+  //   super(props);
+  //   let url = new URLSearchParams(window.location.search).get("id");
+  //   console.log(url, "url");
+
+  //   console.log(props,"line 9 PD")
+  //     console.log(props.params,"this is the props.params")
+  //     console.log(props.match.params.id)
+  // }
+
+  componentDidMount() {
+    console.log("Component Did Mount");
+    if (!localStorage.getItem("token")) {
+      // console.log("No token.");
+      // setTimeout(() => {
+      //   window.location.href = "/signup";
+      // }, 100000);
+      // <Redirect to="/signup" />;
+      // window.location.href = "/signup";
+    }
+    let token = localStorage.getItem("token");
+
+    if (token != null) {
+      let user = jwt_decode(token);
+      if (user) {
+        this.setState({
+          isAuth: true,
+          user: user,
+        });
+      } else {
+        localStorage.removeItem("token");
+        this.setState({
+          isAuth: false,
+        });
+      }
+    }
+  }
   render() {
     let postLink = `/post/${this.props._id}`;
     console.log(this.props.user);
+    // console.log(this.state.user);
     return (
       <Card
         bg="warning"
@@ -28,50 +72,47 @@ export default class Post extends Component {
           <td>
             <Card.Footer className="cardFooter">
               {/* i know i need to send it to a specific ID im just not sure how to do that yet */}
-
               {/* {this.props.loggedInUser.user.id == this.props.user ? (
                 <> */}
-              <Link to={postLink}>
-                <Button variant="info" className="lm postButton">
-                  Learn More!!!
-                </Button>
-              </Link>
 
-              <Link to={`/post/edit/${this.props._id}`}>
-                <Button
-                  variant="info"
-                  className="edit postButton"
-                  onClick={() => this.props.editView(this.props._id)}
-                >
-                  Edit!!!
-                </Button>
-              </Link>
-              <Button
-                variant="info"
-                className="del postButton"
-                onClick={() => this.props.deletePost(this.props._id)}
-              >
-                Delete
-              </Button>
-              {/* </>
-              ) : (
-                <> */}
               <Link to={postLink}>
                 <Button variant="info" className="lm postButton">
                   Learn More
                 </Button>
               </Link>
+              {/* {this.state.user ? ( */}
+              {this.state.user && this.state.user.user.id == this.props.user ? (
+                <>
+                  <Link to={`/post/edit/${this.props._id}`}>
+                    <Button
+                      variant="info"
+                      className="edit postButton"
+                      onClick={() => this.props.editView(this.props._id)}
+                    >
+                      Edit
+                    </Button>
+                  </Link>
+                  <Button
+                    variant="info"
+                    className="del postButton"
+                    onClick={() => this.props.deletePost(this.props._id)}
+                  >
+                    Delete
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button disabled variant="info" className="edit postButton">
+                    Edit
+                  </Button>
 
-              {/* <Link to={`/post/edit/${this.props._id}`}> */}
-              <Button disabled variant="info" className="edit postButton">
-                Edit
-              </Button>
-              {/* </Link> */}
-              <Button disabled variant="info" className="del postButton">
-                Delete
-              </Button>
-              {/* </>
-              )} */}
+                  <Button disabled variant="info" className="del postButton">
+                    Delete
+                  </Button>
+                </>
+              )}
+              {/* ) : null
+              }             */}
             </Card.Footer>
           </td>
         </>
