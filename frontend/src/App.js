@@ -16,6 +16,7 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import jwt_decode from "jwt-decode";
 import PostDetail from "./post/PostDetail";
 import PostEditForm from "./post/PostEditForm";
+import PostHome from "./post/PostHome";
 
 export default class App extends Component {
   state = {
@@ -162,7 +163,7 @@ export default class App extends Component {
               {this.state.isAuth ? (
                 <>
                   <Link to="/post/index" style={linkStyle}>
-                    Home
+                    View Posts
                   </Link>
                   <Link to="/profile" style={linkStyle}>
                     My Profile
@@ -181,9 +182,6 @@ export default class App extends Component {
                 </>
               ) : (
                 <>
-                  <Link to="/post/index" style={linkStyle}>
-                    Posts
-                  </Link>
                   <Link to="/signup" style={linkStyle}>
                     Sign Up
                   </Link>
@@ -199,6 +197,9 @@ export default class App extends Component {
             <Routes>
               {this.state.isAuth ? (
                 <>
+
+                  <Route path="/" element={<PostHome></PostHome>}/>
+
                   <Route
                     path="/post/index"
                     element={
@@ -214,6 +215,7 @@ export default class App extends Component {
                     path="/post/add"
                     element={<PostCreate loadPostIndex={this.loadPostIndex} />}
                   ></Route>
+
 
                   <Route
                     path="/post/edit/:id"
@@ -256,6 +258,7 @@ export default class App extends Component {
                     path="/signin"
                     element={<Signin login={this.loginHandler} />}
                   ></Route>
+                  <Route path="/" element={<PostHome></PostHome>}/>
 
                   {/* <Navigate to="/post/index" replace={true}/> */}
                 </>
