@@ -19,14 +19,12 @@ import PostEditForm from "./post/PostEditForm";
 import PostHome from "./post/PostHome";
 
 export default class App extends Component {
-
   state = {
     isAuth: false,
     user: null,
     message: null,
     posts: [],
     postEdited: false,
-
   };
 
   constructor(props) {
@@ -119,13 +117,12 @@ export default class App extends Component {
   };
 
   handleEdit = (incoming) => {
-    this.setState({postEdited: incoming})
-  }
+    this.setState({ postEdited: incoming });
+  };
 
   loadPostIndex = () => {
     Axios.get("/post/index")
       .then((response) => {
-        
         this.setState({
           posts: response.data.posts,
         });
@@ -143,12 +140,9 @@ export default class App extends Component {
       color: "white",
     };
 
-    
     // console.log(this.state, "Hi!");
 
-
     console.log(this.state, "Hi!");
-
 
     // const postDetails = this.state.posts.map((post) => {
 
@@ -165,7 +159,7 @@ export default class App extends Component {
         {/* You can create links to your components with link tag - see below */}
         <Router>
           <Container>
-            <Nav className="me-auto" className="navbar fixed-top">
+            <Nav className="me-auto navbar fixed-top">
               {this.state.isAuth ? (
                 <>
                   <Link to="/post/index" style={linkStyle}>
@@ -203,14 +197,41 @@ export default class App extends Component {
             <Routes>
               {this.state.isAuth ? (
                 <>
+
                   <Route path="/" element={<PostHome></PostHome>}/>
 
-                  <Route path="/post/index" element={<PostIndex user={this.state.user} postEdited={this.state.postEdited} loadPostIndex={this.loadPostIndex} posts={this.state.posts} />}></Route>
-                  <Route path="/post/add" element={<PostCreate loadPostIndex={this.loadPostIndex} />}></Route>
+                  <Route
+                    path="/post/index"
+                    element={
+                      <PostIndex
+                        user={this.state.user}
+                        postEdited={this.state.postEdited}
+                        loadPostIndex={this.loadPostIndex}
+                        posts={this.state.posts}
+                      />
+                    }
+                  ></Route>
+                  <Route
+                    path="/post/add"
+                    element={<PostCreate loadPostIndex={this.loadPostIndex} />}
+                  ></Route>
 
-                  <Route path="/post/edit/:id" element={<PostEditForm loadPostIndex={this.loadPostIndex} postEdited={this.state.postEdited} handleEdit={this.handleEdit} />}></Route>
 
-                  <Route path="/post/:id" element={<PostDetail name={"post"}/>}></Route>
+                  <Route
+                    path="/post/edit/:id"
+                    element={
+                      <PostEditForm
+                        loadPostIndex={this.loadPostIndex}
+                        postEdited={this.state.postEdited}
+                        handleEdit={this.handleEdit}
+                      />
+                    }
+                  ></Route>
+
+                  <Route
+                    path="/post/:id"
+                    element={<PostDetail name={"post"} />}
+                  ></Route>
 
                   <Route
                     path="/profile"
@@ -238,7 +259,6 @@ export default class App extends Component {
                     element={<Signin login={this.loginHandler} />}
                   ></Route>
                   <Route path="/" element={<PostHome></PostHome>}/>
-
 
                   {/* <Navigate to="/post/index" replace={true}/> */}
                 </>
