@@ -5,31 +5,16 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router";
 
 export default function PostEditForm(props) {
-    // constructor(props) {
-    //   super(props)
     
-    //   this.state = {
-    //      newPost: props.post
-    //   }
-    // }
     let params = useParams()
-    console.log(params)
-
 
     const [editSamePost, setEditSamePost] = useState('')
     const navigate = useNavigate();
     
     useEffect(() => {
-      // Update the document title using the browser API
-      // document.title = `You clicked ${count} times`;
       Axios.get((`/post/edit/${params.id}`), {
-        // headers: {
-        //   "Authorization": "Bearer " + localStorage.getItem("token")
-        // }
       })
       .then(response => {
-        console.log("Loaded Post Information")
-        
         let post = response.data.post
         setEditSamePost(post)
       })
@@ -38,9 +23,6 @@ export default function PostEditForm(props) {
         console.log(error)
       })
     },[]);
-
-
-    // const [newPost, setNewPost] = useState(null);
     
     const handleChange = (event) => {
         const attributeToChange = event.target.name;
@@ -49,7 +31,6 @@ export default function PostEditForm(props) {
         const post = { ...editSamePost };
         post[attributeToChange] = newValue;
     
-      
         setEditSamePost(post)
        
       };
@@ -60,15 +41,10 @@ export default function PostEditForm(props) {
         navigate("/post/index");
       };
     
-    
       const editPost = (post) => {
         Axios.put("/post/update", post, {
-          // headers: {
-          //   Authorization: "Bearer " + localStorage.getItem("token"),
-          // },
         })
           .then((response) => {
-            console.log("Post Added successfully!");
             props.handleEdit(!props.postEdited);
           })
           .catch((error) => {
@@ -76,13 +52,11 @@ export default function PostEditForm(props) {
             console.log(error);
           });
       };
-
-
-  // render() {
     
     return (
         <div>
         <Container>
+
           <h1>Update Post</h1>
 
           <form onSubmit={handleSubmit}>
@@ -173,4 +147,4 @@ export default function PostEditForm(props) {
       </div>
     )
   }
-// }
+
