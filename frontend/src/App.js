@@ -28,6 +28,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     let url = new URLSearchParams(window.location.search).get("id");
+    console.log(url, "url");
   }
 
   loadUserProfile = (id) => {
@@ -91,6 +92,13 @@ export default class App extends Component {
       });
   };
 
+  deletePost = async (id) => {
+    await Axios.delete(`/post/delete?id=${id}`);
+
+    console.log("Deleted Post!!!");
+    this.loadPostIndex();
+  };
+
   render() {
     const linkStyle = {
       margin: "1rem",
@@ -99,9 +107,7 @@ export default class App extends Component {
     };
 
     return (
-
-      <div class="mainBackground">
-       
+      <div>
         <Router>
           <Container>
             <Nav className="me-auto navbar fixed-top">
@@ -152,6 +158,7 @@ export default class App extends Component {
                         postEdited={this.state.postEdited}
                         loadPostIndex={this.loadPostIndex}
                         posts={this.state.posts}
+                        deletePost={this.deletePost}
                       />
                     }
                   ></Route>
@@ -183,6 +190,9 @@ export default class App extends Component {
                         user={this.state.user}
                         lastName={this.state.user.lastName}
                         emailAddress={this.state.user.emailAddress}
+                        deletePost={this.deletePost}
+                        loadPostIndex={this.loadPostIndex}
+                        posts={this.state.posts}
                       />
                     }
                   ></Route>
@@ -197,9 +207,7 @@ export default class App extends Component {
                     path="/signin"
                     element={<Signin login={this.loginHandler} />}
                   ></Route>
-
-                  <Route path="/" element={<PostHome></PostHome>}/>
-
+                  <Route path="/" element={<PostHome></PostHome>} />
                 </>
               )}
             </Routes>
