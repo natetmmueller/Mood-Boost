@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 import Axios from "axios";
 import { useParams } from "react-router";
+import "./Comment.css";
 
 export default function Comment(props) {
   const params = useParams();
@@ -20,13 +21,12 @@ export default function Comment(props) {
   }, [newCommentAdded]);
 
   return (
-    <div>
+    <div className="userComments">
       {comment && (
         <div>
-          {" "}
           {comment.map((e) => (
             <li>{e.comment} </li>
-          ))}{" "}
+          ))}
         </div>
       )}
     </div>

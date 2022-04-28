@@ -9,7 +9,6 @@
   display: inline-block !important;
   flex-wrap: wrap !important;
 }
-/* and this as well as className="userCard" line 92 in user profile */
 
 .userGrid {
   display: inline-block !important;

@@ -42,13 +42,26 @@ export default class Post extends Component {
         style={{ width: "20rem" }}
       >
         <>
-          <Card.Header>{this.props.postTitle}</Card.Header>
+          <Card.Header
+            style={{
+              "font-family": "Lato, sans-serif",
+              "text-align": "center",
+            }}
+          >
+            {this.props.postTitle}
+          </Card.Header>
 
-          <td>{this.props.scale}</td>
-          <td>{this.props.description}</td>
-          <td>{this.props.linkToIt}</td>
+          <td className="cardContent">{this.props.scale}</td>
+          <td className="cardContent">{this.props.description}</td>
+          <td className="cardContent">{this.props.linkToIt}</td>
           <td>
-            <Card.Footer className="cardFooter">
+            <Card.Footer
+              className="cardFooter"
+              style={{
+                "font-family": "Lato, sans-serif",
+                "text-align": "center",
+              }}
+            >
               <Link to={postLink}>
                 <Button variant="info" className="lm postButton">
                   Learn More

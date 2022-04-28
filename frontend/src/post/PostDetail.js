@@ -22,19 +22,23 @@ export default function PostDetail(props) {
   return (
     <Container>
       <>
-        {" "}
         {post && (
-          <div>
+          <div className="postDetailsForm">
             <h1 className="oneCommentTitle">
               <b>{post.postTitle}</b> makes me happy!
             </h1>
             <h1 className="commentTitle">
-              It makes me <b>{post.scale}</b>/10 happy!
+              Because of <b>{post.postTitle}</b> I am <b>{post.scale}</b>/10
+              happy!
             </h1>
-            <h1 className="commentTitle"> why does it make me happy?</h1>
-            <h1 className="commentTitle">{post.description}</h1>
             <h1 className="commentTitle">
-              Click here to see it: <b>{post.linkToIt}</b>
+              Why does <b>{post.postTitle}</b> make me happy?
+            </h1>
+            <h1 className="commentTitle">
+              <em>Because...{post.description}</em>
+            </h1>
+            <h1 className="commentTitle">
+              Follow the link: <b>{post.linkToIt}</b>
             </h1>
             <h1 className="comments">Comments:</h1>
             <br></br>
