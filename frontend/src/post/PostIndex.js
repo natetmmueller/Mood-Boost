@@ -5,20 +5,18 @@ import { useNavigate } from "react-router";
 
 // import { Post } from "../../../backend/models/Post";
 
-export default function PostIndex(props){
-  const [posts, setPosts] = useState(props.posts)
+export default function PostIndex(props) {
+  const [posts, setPosts] = useState(props.posts);
   const navigate = useNavigate();
 
-
-
   useEffect(() => {
-    if(!props.user){
+    if (!props.user) {
       navigate("/");
     }
-    setPosts(props.posts)
+    setPosts(props.posts);
     props.loadPostIndex();
-  }, [props.posts?.length, props.postEdited, props])
-// if we put---> , props <--- in line 20 at the end its goes into a infinite loop but it does show the edit and add post automatically updating
+  }, [props.posts?.length, props.postEdited, props]);
+  // if we put---> , props <--- in line 20 at the end its goes into a infinite loop but it does show the edit and add post automatically updating
   const deletePost = (id) => {
     Axios.delete(`/post/delete?id=${id}`, {
       headers: {
@@ -43,16 +41,14 @@ export default function PostIndex(props){
     );
   });
 
-    return (
-      <>    
+  return (
+    <>
+      <div>
+        <h1>All the Things that Make us Happy!</h1>
         <div>
-          <h1>All the Things that Make us Happy!</h1>
-          <div>
-            <table>
-              {allPosts}
-            </table>
-          </div>
+          <table>{allPosts}</table>
         </div>
-      </>
-    );
+      </div>
+    </>
+  );
 }

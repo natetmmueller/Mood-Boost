@@ -11,7 +11,7 @@ import PostIndex from "./post/PostIndex";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Axios from "axios";
 // import { Post } from "../../../backend/models/Post";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Container, Nav } from "react-bootstrap";
 
 import jwt_decode from "jwt-decode";
 import PostDetail from "./post/PostDetail";
@@ -155,7 +155,7 @@ export default class App extends Component {
     // });
 
     return (
-      <div>
+      <div class="mainBackground">
         {/* You can create links to your components with link tag - see below */}
         <Router>
           <Container>
@@ -197,8 +197,7 @@ export default class App extends Component {
             <Routes>
               {this.state.isAuth ? (
                 <>
-
-                  <Route path="/" element={<PostHome></PostHome>}/>
+                  <Route path="/" element={<PostHome></PostHome>} />
 
                   <Route
                     path="/post/index"
@@ -215,7 +214,6 @@ export default class App extends Component {
                     path="/post/add"
                     element={<PostCreate loadPostIndex={this.loadPostIndex} />}
                   ></Route>
-
 
                   <Route
                     path="/post/edit/:id"
@@ -258,7 +256,7 @@ export default class App extends Component {
                     path="/signin"
                     element={<Signin login={this.loginHandler} />}
                   ></Route>
-                  <Route path="/" element={<PostHome></PostHome>}/>
+                  <Route path="/" element={<PostHome></PostHome>} />
 
                   {/* <Navigate to="/post/index" replace={true}/> */}
                 </>

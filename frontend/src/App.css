@@ -41,11 +41,6 @@
   background-color: rgb(255, 165, 61) !important;
 }
 
-.postButton {
-  margin: 2px;
-  border-radius: 10px;
-}
-
 .cards {
   margin: 2px;
   padding: 10px;
@@ -62,7 +57,7 @@ h1 {
 }
 
 .navbar {
-  background-color: #282c34;
+  background-color: steelblue;
   font-family: "Lato", sans-serif;
 }
 
@@ -75,4 +70,10 @@ h1 {
   padding-top: 100px;
   padding-bottom: 20px;
   font-family: "Lato", sans-serif;
+}
+
+.postButton {
+  margin: 2px;
+  border-radius: 10px;
+  background-color: steelblue;
 }

@@ -3,6 +3,7 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import Post from "../post/Post";
 import Axios from "axios";
 import jwt_decode from "jwt-decode";
+import "./UserProfile.css";
 
 export default class UserProfile extends Component {
   constructor(props) {
@@ -72,7 +73,7 @@ export default class UserProfile extends Component {
     console.log(this.state.posts);
     console.log(this.state.user);
     const userPosts = this.state.posts.map((post, index) => {
-      if (this.state.user.user.id == post.user) {
+      if (this.state.user.user.id === post.user) {
         return (
           <tr key={index}>
             <Post
@@ -100,21 +101,4 @@ export default class UserProfile extends Component {
       </Container>
     );
   }
-}
-
-{
-  /* <div class="row">
-          <table>
-            <tbody>
-              <tr>
-                <td "profileTitle">
-                  This is what makes <b>{this.state.firstName}</b> happy!
-                  {this.state.userPosts}
-                </td>
-              </tr>
-
-              {userPosts}
-            </tbody>
-          </table>
-        </div> */
 }
