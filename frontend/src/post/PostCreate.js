@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import Axios from "axios";
 import { useNavigate } from "react-router";
+import "./PostCreate.css";
 
 export default function PostCreate(props) {
   const [newPost, setNewPost] = useState(null);
@@ -36,22 +37,30 @@ export default function PostCreate(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     addPost(newPost);
-    props.loadPostIndex()
+    props.loadPostIndex();
     navigate("/post/index");
   };
 
   return (
-    <div>
-      <Container>
-        
-        <h1>Create Post</h1>
 
-        <form onSubmit={handleSubmit}>
+    <div class="createPostDiv">
+      <h1 class="createFormTitle">Create Post</h1>
+      <Container
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "60vh",
+          margin: "0 auto",
+        }}
+      >
+        <form onSubmit={handleSubmit} class="createForm">
+
           <Row>
             <Col>
               <div>
                 <div>
-                  <label>
+                  <label class="createFormLabel">
                     What makes you happy? <em> Title of post goes here...</em>
                   </label>
                 </div>
@@ -60,6 +69,7 @@ export default function PostCreate(props) {
                     name="postTitle"
                     type="text"
                     onChange={handleChange}
+                    class="createFormInput"
                   ></input>
                 </div>
               </div>
@@ -69,8 +79,8 @@ export default function PostCreate(props) {
           <Row>
             <div>
               <div>
-                <label>
-                  How happy does this make you, fr0m 1 - 10?
+                <label class="createFormLabel">
+                  How happy does this make you, from 1 - 10?
                   <em> Choose a number on the scale...</em>
                 </label>
               </div>
@@ -81,6 +91,7 @@ export default function PostCreate(props) {
                   min={1}
                   max={10}
                   onChange={handleChange}
+                  class="createFormInput"
                 ></input>
               </div>
             </div>
@@ -89,7 +100,7 @@ export default function PostCreate(props) {
           <Row>
             <div>
               <div>
-                <label>
+                <label class="createFormLabel">
                   Why does this make you happy?{" "}
                   <em> Write your story here...</em>
                 </label>
@@ -99,6 +110,7 @@ export default function PostCreate(props) {
                   name="description"
                   type="text"
                   onChange={handleChange}
+                  class="createFormInput"
                 ></textarea>
               </div>
             </div>
@@ -107,7 +119,7 @@ export default function PostCreate(props) {
           <Row>
             <div>
               <div>
-                <label>
+                <label class="createFormLabel">
                   Link to my Mood Booster! <em>Click here...</em>
                 </label>
               </div>
@@ -116,6 +128,7 @@ export default function PostCreate(props) {
                   name="linkToIt"
                   type="text"
                   onChange={handleChange}
+                  class="createFormInput"
                 ></input>
               </div>
             </div>
@@ -123,7 +136,7 @@ export default function PostCreate(props) {
 
           <Row>
             <div>
-              <input type="submit" value="Add Post"></input>
+              <input type="submit" value="Add Post" class="addPostBtn"></input>
             </div>
           </Row>
         </form>

@@ -8,7 +8,9 @@ import UserProfile from "./user/UserProfile";
 import PostIndex from "./post/PostIndex";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Axios from "axios";
-import { Navbar, Container, Nav } from "react-bootstrap";
+
+import { Container, Nav } from "react-bootstrap";
+
 import jwt_decode from "jwt-decode";
 import PostDetail from "./post/PostDetail";
 import PostEditForm from "./post/PostEditForm";
@@ -97,7 +99,9 @@ export default class App extends Component {
     };
 
     return (
-      <div>
+
+      <div class="mainBackground">
+       
         <Router>
           <Container>
             <Nav className="me-auto navbar fixed-top">
@@ -138,8 +142,7 @@ export default class App extends Component {
             <Routes>
               {this.state.isAuth ? (
                 <>
-
-                  <Route path="/" element={<PostHome></PostHome>}/>
+                  <Route path="/" element={<PostHome></PostHome>} />
 
                   <Route
                     path="/post/index"
@@ -156,7 +159,6 @@ export default class App extends Component {
                     path="/post/add"
                     element={<PostCreate loadPostIndex={this.loadPostIndex} />}
                   ></Route>
-
 
                   <Route
                     path="/post/edit/:id"
@@ -195,7 +197,9 @@ export default class App extends Component {
                     path="/signin"
                     element={<Signin login={this.loginHandler} />}
                   ></Route>
+
                   <Route path="/" element={<PostHome></PostHome>}/>
+
                 </>
               )}
             </Routes>

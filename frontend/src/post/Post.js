@@ -1,9 +1,8 @@
-import { Axios } from "axios";
 import React, { Component } from "react";
 
 import { Card, Button } from "react-bootstrap";
-import PostDetail from "./PostDetail";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+
+import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
 export default class Post extends Component {
@@ -53,12 +52,13 @@ export default class Post extends Component {
           <td>
             <Card.Footer className="cardFooter">
 
+
               <Link to={postLink}>
                 <Button variant="info" className="lm postButton">
                   Learn More
                 </Button>
               </Link>
-              
+
               {this.state.user && this.state.user.user.id == this.props.user ? (
                 <>
                   <Link to={`/post/edit/${this.props._id}`}>
@@ -70,24 +70,20 @@ export default class Post extends Component {
                       Edit
                     </Button>
                   </Link>
-         
-                      <Button
-                        variant="info"
-                        className="del postButton"
-                        onClick={() => this.props.deletePost(this.props._id)}
-                      >
-                        Delete
-                      </Button>
-                    </>
-                  ) : (
-                    <>
-                      <Button
-                        disabled
-                        variant="info"
-                        className="edit postButton"
-                      >
-                        Edit
-                      </Button>
+
+                  <Button
+                    variant="info"
+                    className="del postButton"
+                    onClick={() => this.props.deletePost(this.props._id)}
+                  >
+                    Delete
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button disabled variant="info" className="edit postButton">
+                    Edit
+                  </Button>
 
 
                   <Button disabled variant="info" className="del postButton">
@@ -95,7 +91,7 @@ export default class Post extends Component {
                   </Button>
                 </>
               )}
-              
+
             </Card.Footer>
           </td>
         </>

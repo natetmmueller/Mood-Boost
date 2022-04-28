@@ -1,0 +1,38 @@
+.createFormLabel {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+  color: black;
+  font-family: "Lato", sans-serif;
+  font-size: 20px;
+}
+
+.createPostDiv {
+  text-align: center;
+  background-color: gold;
+}
+
+.addPostBtn {
+  background-color: cornflowerblue;
+  font-family: "Lato", sans-serif;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 5px solid steelblue;
+  border-style: outset;
+  color: white;
+  /* box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+
+.addPostBtn:hover {
+  background-color: cornflowerblue;
+  border: 5px solid steelblue;
+  border-style: inset;
+  color: white;
+}
+
+.createFormInput {
+  border: 3px solid cornflowerblue;
+  border-style: inset;
+}
