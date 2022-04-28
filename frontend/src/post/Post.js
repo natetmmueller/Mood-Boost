@@ -36,14 +36,16 @@ export default class Post extends Component {
     let postLink = `/post/${this.props._id}`;
     
     return (
-      <Card
-        bg="warning"
-        className="cards"
-        border="warning"
-        style={{ width: "18rem" }}
-      >
-        <>
-          <Card.Header>{this.props.postTitle}</Card.Header>
+    
+          <Card
+            bg="warning"
+            className="cards"
+            border="warning"
+            style={{ width: "20rem" }}
+          >
+            <>
+              <Card.Header>{this.props.postTitle}</Card.Header>
+
 
           <td>{this.props.scale}</td>
           <td>{this.props.description}</td>
@@ -68,19 +70,25 @@ export default class Post extends Component {
                       Edit
                     </Button>
                   </Link>
-                  <Button
-                    variant="info"
-                    className="del postButton"
-                    onClick={() => this.props.deletePost(this.props._id)}
-                  >
-                    Delete
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Button disabled variant="info" className="edit postButton">
-                    Edit
-                  </Button>
+         
+                      <Button
+                        variant="info"
+                        className="del postButton"
+                        onClick={() => this.props.deletePost(this.props._id)}
+                      >
+                        Delete
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Button
+                        disabled
+                        variant="info"
+                        className="edit postButton"
+                      >
+                        Edit
+                      </Button>
+
 
                   <Button disabled variant="info" className="del postButton">
                     Delete
