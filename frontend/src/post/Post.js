@@ -4,6 +4,7 @@ import { Card, Button } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import "./Post.css"
 
 export default class Post extends Component {
   state = {

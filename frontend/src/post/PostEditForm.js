@@ -3,6 +3,7 @@ import { Row, Col, Container } from "react-bootstrap";
 import Axios from "axios";
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router";
+import "./PostEditForm.css";
 
 export default function PostEditForm(props) {
     
@@ -54,17 +55,25 @@ export default function PostEditForm(props) {
       };
     
     return (
-        <div>
-        <Container>
+        <div class="editPostDiv">
+          <h1 class="editFormTitle">Update Post</h1>
 
-          <h1>Update Post</h1>
+        <Container
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "60vh",
+          margin: "0 auto",
+        }}
+        >
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} class="editForm">
             <Row>
               <Col>
                 <div>
                   <div>
-                    <label>
+                    <label class="editFormLabel">
                       What makes you happy? <em> Title of post goes here...</em>
                     </label>
                   </div>
@@ -74,6 +83,7 @@ export default function PostEditForm(props) {
                       type="text"
                       value={editSamePost.postTitle}
                       onChange={handleChange}
+                      class="editFormInput"
                     ></input>
                   </div>
                 </div>
@@ -83,7 +93,7 @@ export default function PostEditForm(props) {
             <Row>
               <div>
                 <div>
-                  <label>
+                  <label class="editFormLabel">
                     How happy does this make you?
                     <em> Choose a number on the scale...</em>
                   </label>
@@ -92,8 +102,11 @@ export default function PostEditForm(props) {
                   <input
                     name="scale"
                     type="number"
+                    min={1}
+                    max={10}
                     value={editSamePost.scale}
                     onChange={handleChange}
+                    class="editFormInput"
                   ></input>
                 </div>
               </div>
@@ -102,7 +115,7 @@ export default function PostEditForm(props) {
             <Row>
               <div>
                 <div>
-                  <label>
+                  <label class="editFormLabel">
                     Why does this make you happy?{" "}
                     <em> Write your story here...</em>
                   </label>
@@ -113,6 +126,7 @@ export default function PostEditForm(props) {
                     type="text"
                     value={editSamePost.description}
                     onChange={handleChange}
+                    class="editFormInput"
                   ></textarea>
                 </div>
               </div>
@@ -121,7 +135,7 @@ export default function PostEditForm(props) {
             <Row>
               <div>
                 <div>
-                  <label>
+                  <label class="editFormLabel">
                     Link to my Mood Booster! <em>Click here...</em>
                   </label>
                 </div>
@@ -131,6 +145,7 @@ export default function PostEditForm(props) {
                     type="text"
                     value={editSamePost.linkToIt}
                     onChange={handleChange}
+                    class="editFormInput"
                   ></input>
                 </div>
               </div>
@@ -138,7 +153,7 @@ export default function PostEditForm(props) {
 
             <Row>
               <div>
-                <input type="submit" value="Edit Post"></input>
+                <input type="submit" value="Edit Post" class="editPostBtn"></input>
               </div>
             </Row>
           </form>
