@@ -70,6 +70,7 @@ export default function PostComments() {
                   type="submit"
                   value="Add Comment"
                   onClick={handleSubmit}
+                  className="commentBtn"
                 ></input>
               </div>
             </Col>

@@ -102,7 +102,6 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   width: 100vw;
-  height: 100vh;
 }
 
 .formText {
@@ -110,4 +109,11 @@ body {
   color: white;
   font-size: 20px;
   text-shadow: 2px 2px 2px black;
+}
+
+.cardContent {
+  font-family: "Lato", sans-serif;
+  text-align: left;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
