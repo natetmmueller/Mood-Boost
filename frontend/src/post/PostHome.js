@@ -8,9 +8,7 @@ export default class PostHome extends Component {
       <div className='homeBody'> 
           <br/> 
         <h1>What brightens your day?</h1>
-
       </div>
-      
     )
   }
 }

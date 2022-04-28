@@ -1,16 +1,14 @@
 import React, { Component } from "react";
-
 import Signup from "./user/Signup";
 import Signin from "./user/Signin";
 import PostCreate from "./post/PostCreate";
 import "./App.css";
 import "./index.css";
 import UserProfile from "./user/UserProfile";
-
 import PostIndex from "./post/PostIndex";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Axios from "axios";
-// import { Post } from "../../../backend/models/Post";
+
 import { Container, Nav } from "react-bootstrap";
 
 import jwt_decode from "jwt-decode";
@@ -30,42 +28,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     let url = new URLSearchParams(window.location.search).get("id");
-    console.log(url, "url");
-
-    //   console.log(props,"line 9 PD")
-    //     console.log(props.params,"this is the props.params")
-    //     console.log(props.match.params.id)
   }
-
-  // componentDidMount() {
-  //   if (!localStorage.getItem("token")) {
-  //     console.log("No token.");
-  //     // setTimeout(() => {
-  //     //   window.location.href = "/signup";
-  //     // }, 100000);
-  //     // <Redirect to="/signup" />;
-
-  //     // window.location.href = "/signup";
-  //   }
-  //   let token = localStorage.getItem("token");
-
-  //   if (token != null) {
-  //     let user = jwt_decode(token);
-  //     let post = jwt_decode(token);
-  //     if (user) {
-  //       this.setState({
-  //         isAuth: true,
-  //         user: user,
-  //         post: post,
-  //       });
-  //     } else {
-  //       localStorage.removeItem("token");
-  //       this.setState({
-  //         isAuth: false,
-  //       });
-  //     }
-  //   }
-  // }
 
   loadUserProfile = (id) => {
     Axios.get("profile")
@@ -91,19 +54,14 @@ export default class App extends Component {
 
   loginHandler = (cred) => {
     Axios.post("auth/signin", cred).then((response) => {
-      console.log(response.data, "response data");
       let token = response.data.token;
-      console.log(token);
       localStorage.setItem("token", token);
       let user = jwt_decode(token);
-      // To do: check that if there is no token, set isAuth: false, and user: null
       this.setState({
         isAuth: true,
         user: user,
       });
-      // console.log(response.data.token);
     });
-    console.log(this.state, "85");
   };
 
   logoutHandler = (e) => {
@@ -140,23 +98,10 @@ export default class App extends Component {
       color: "white",
     };
 
-    // console.log(this.state, "Hi!");
-
-    console.log(this.state, "Hi!");
-
-    // const postDetails = this.state.posts.map((post) => {
-
-    //   return (
-
-    //     <tr key={post._id}>
-    //       <Route path={post.path} element={<PostDetail />}></Route>
-    //     </tr>
-    //   );
-    // });
-
     return (
+
       <div class="mainBackground">
-        {/* You can create links to your components with link tag - see below */}
+       
         <Router>
           <Container>
             <Nav className="me-auto navbar fixed-top">
@@ -234,15 +179,11 @@ export default class App extends Component {
                   <Route
                     path="/profile"
                     element={
-                      // this.state.isAuth ? (
                       <UserProfile
                         user={this.state.user}
                         lastName={this.state.user.lastName}
                         emailAddress={this.state.user.emailAddress}
                       />
-                      // ) : (
-                      //   <p>User logged out</p>
-                      // )
                     }
                   ></Route>
                 </>
@@ -256,9 +197,9 @@ export default class App extends Component {
                     path="/signin"
                     element={<Signin login={this.loginHandler} />}
                   ></Route>
-                  <Route path="/" element={<PostHome></PostHome>} />
 
-                  {/* <Navigate to="/post/index" replace={true}/> */}
+                  <Route path="/" element={<PostHome></PostHome>}/>
+
                 </>
               )}
             </Routes>
