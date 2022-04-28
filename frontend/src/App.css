@@ -38,7 +38,7 @@
 }
 
 .card-footer {
-  background-color: rgb(255, 165, 61) !important;
+  background-image: linear-gradient(yellow, orange) !important;
 }
 
 .cards {
@@ -46,7 +46,10 @@
   padding: 10px;
   display: inline-block;
   color: black;
-  opacity: 0.7;
+  opacity: 0.88;
+  /* did this change */
+  background-image: linear-gradient(yellow, orange) !important;
+  border-radius: 10px !important;
 }
 
 h1 {
@@ -54,11 +57,21 @@ h1 {
   padding-top: 100px;
   padding-bottom: 20px;
   font-family: "Lato", sans-serif;
+  color: white;
+  text-shadow: 2px 2px 2px black;
 }
 
 .navbar {
-  background-color: steelblue;
+  /* did this change */
+  background-color: rgb(44, 104, 255);
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.9;
+  background-position: 0px 0px;
+  /* to here */
+  /* background-color: steelblue; */
   font-family: "Lato", sans-serif;
+  text-shadow: 2px 2px 2px black;
 }
 
 .font-link {
@@ -70,10 +83,31 @@ h1 {
   padding-top: 100px;
   padding-bottom: 20px;
   font-family: "Lato", sans-serif;
+  text-shadow: 2px 2px 2px black;
 }
 
 .postButton {
   margin: 2px;
   border-radius: 10px;
   background-color: steelblue;
+}
+
+.font-link {
+  font-family: "Lato", sans-serif;
+}
+
+/* did this */
+body {
+  background-image: url(../src/img/home.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+.formText {
+  font-family: "Lato", sans-serif;
+  color: white;
+  font-size: 20px;
+  text-shadow: 2px 2px 2px black;
 }

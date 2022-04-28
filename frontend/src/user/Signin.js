@@ -23,7 +23,9 @@ export default function Signin(props) {
       <h1>Sign In</h1>
       <Container>
         <Form.Group>
-          <Form.Label>Email Address</Form.Label>
+          <Form.Label>
+            <span className="formText">Email Address</span>
+          </Form.Label>
           <Form.Control
             name="emailAddress"
             onChange={changeHandler}
@@ -31,7 +33,9 @@ export default function Signin(props) {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>Password</Form.Label>
+          <Form.Label>
+            <span className="formText">Password</span>
+          </Form.Label>
           <Form.Control
             name="password"
             type="password"
@@ -40,7 +44,7 @@ export default function Signin(props) {
         </Form.Group>
         <br />
 
-        <Button varient="primary" onClick={loginHandler}>
+        <Button className="formText" varient="primary" onClick={loginHandler}>
           Login
         </Button>
       </Container>

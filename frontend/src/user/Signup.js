@@ -13,18 +13,18 @@ export default function Signup(props) {
   };
 
   const signupHandler = () => {
-
     props.signupAccount(user);
     navigate("/signin");
   };
-
 
   return (
     <div>
       <h1>Sign Up</h1>
       <Container>
         <Form.Group>
-          <Form.Label>First Name</Form.Label>
+          <Form.Label>
+            <span className="formText">First Name</span>
+          </Form.Label>
           <Form.Control
             name="firstName"
             onChange={changeHandler}
@@ -32,12 +32,16 @@ export default function Signup(props) {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>Last Name</Form.Label>
+          <Form.Label>
+            <span className="formText">Last Name</span>
+          </Form.Label>
           <Form.Control name="lastName" onChange={changeHandler}></Form.Control>
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>Email Address</Form.Label>
+          <Form.Label>
+            <span className="formText">Email Address</span>
+          </Form.Label>
           <Form.Control
             name="emailAddress"
             onChange={changeHandler}
@@ -45,7 +49,9 @@ export default function Signup(props) {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>Password</Form.Label>
+          <Form.Label>
+            <span className="formText">Password</span>
+          </Form.Label>
           <Form.Control
             name="password"
             type="password"
@@ -53,7 +59,7 @@ export default function Signup(props) {
           ></Form.Control>
         </Form.Group>
         <br />
-        <Button varient="primary" onClick={signupHandler}>
+        <Button className="formText" varient="primary" onClick={signupHandler}>
           Register
         </Button>
       </Container>

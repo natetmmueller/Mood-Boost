@@ -25,9 +25,9 @@ export default function UserProfile(props) {
       <div class="profileTitle">
         This is what makes <b>{props.user.user.name}</b> happy!
       </div>
-      <Row xs={1} md={3} className="g-4">
+      <Row className="userGrid">
         <Col>
-          <Card>{userPosts}</Card>
+          <Card className="userCard">{userPosts}</Card>
         </Col>
       </Row>
     </Container>
