@@ -52,7 +52,6 @@ Each post has a detailed view where you can add comments on your favourite posts
 - Incorporate music/video API
 - Add a comment delete function
 - Add favourites
-- 
 
 ## Original Plan
 
