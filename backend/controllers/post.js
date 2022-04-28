@@ -4,7 +4,6 @@ const { Post } = require("../models/Post");
 const moment = require("moment");
 const mongoose = require("mongoose");
 
-
 //post a post
 exports.addPost = (req, res) => {
   console.log("api called");
@@ -43,7 +42,7 @@ exports.post_index = (req, res) => {
 exports.showPost = async (req, res) => {
   try {
     let post = await Post.findById(req.query.id).populate("user");
-    console.log("01",post)
+    console.log("01", post);
     res.status(200).json(post);
   } catch (err) {
     res.status(400).json(err);
@@ -57,9 +56,9 @@ exports.addComment = async (req, res) => {
     let post = await Post.findById(req.params.id);
     post.comments.push(req.body);
     post.save();
-    res.status(200).json({post});
+    res.status(200).json({ post });
   } catch (err) {
-      console.log(err)
+    console.log(err);
     res.status(400).json(err);
   }
 };
@@ -90,12 +89,12 @@ exports.postUpdate = (req, res) => {
 //deleting the post
 exports.deletePost = (req, res) => {
   console.log(req.query.id);
+
   Post.findByIdAndDelete(req.query.id)
     .then((post) => {
-      res.json(post);
+      res.status(200).send("done!");
     })
     .catch((err) => {
-      console.log(post);
+      console.log(err);
     });
 };
-

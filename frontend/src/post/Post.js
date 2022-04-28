@@ -33,26 +33,22 @@ export default class Post extends Component {
   }
   render() {
     let postLink = `/post/${this.props._id}`;
-    
-    return (
-    
-          <Card
-            bg="warning"
-            className="cards"
-            border="warning"
-            style={{ width: "20rem" }}
-          >
-            <>
-              <Card.Header>{this.props.postTitle}</Card.Header>
 
+    return (
+      <Card
+        bg="warning"
+        className="cards"
+        border="warning"
+        style={{ width: "20rem" }}
+      >
+        <>
+          <Card.Header>{this.props.postTitle}</Card.Header>
 
           <td>{this.props.scale}</td>
           <td>{this.props.description}</td>
           <td>{this.props.linkToIt}</td>
           <td>
             <Card.Footer className="cardFooter">
-
-
               <Link to={postLink}>
                 <Button variant="info" className="lm postButton">
                   Learn More
@@ -70,7 +66,6 @@ export default class Post extends Component {
                       Edit
                     </Button>
                   </Link>
-
                   <Button
                     variant="info"
                     className="del postButton"
@@ -85,13 +80,11 @@ export default class Post extends Component {
                     Edit
                   </Button>
 
-
                   <Button disabled variant="info" className="del postButton">
                     Delete
                   </Button>
                 </>
               )}
-
             </Card.Footer>
           </td>
         </>
