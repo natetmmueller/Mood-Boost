@@ -6,12 +6,6 @@ const salt = 10;
 const { validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
 
-// HTTP GET - Signup - to load the signup form
-
-// exports.auth_signup_get = (req, res) => {
-//   res.render("auth/signup");
-// };
-
 // HTTP POST - Signup - to post the data
 exports.auth_signup_post = (req, res) => {
   let user = new User(req.body);
@@ -24,19 +18,14 @@ exports.auth_signup_post = (req, res) => {
   user
     .save()
     .then(() => {
-      // res.redirect("/auth/signin");
       res.json({ message: "User Created Successfully!!!" });
     })
     .catch((err) => {
       if (err.code == 11000) {
-        // req.flash("error", "Email already exists");
-        // res.redirect("/auth/signin");
         res.json({ message: "Email Already Exists!" });
       } else {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-          //   res.status(400).json({errors: errors.array()});
-          // req.flash("validationErrors", errors.errors);
           res.json({
             message: "validation Errors",
             ValidationErrors: "errors.errors",
@@ -47,24 +36,7 @@ exports.auth_signup_post = (req, res) => {
     });
 };
 
-// HTTP GET - Signin - to load the signin form
-
-// exports.auth_signin_get = (req, res) => {
-//   res.render("auth/signin");
-// };
-
-// HTTP POST - Signin - to post the data
-
-// exports.auth_signin_post = passport.authenticate("local", {
-//   successRedirect: "/",
-//   failureRedirect: "/auth/signin",
-//   failureFlash: "Invalid username or password",
-//   successFlash: "You are logged in successfully",
-// });
-
 exports.auth_signin_post = async (req, res) => {
-  // req.body.emailAddress
-  // req.body.password
 
   let { emailAddress, password } = req.body;
   console.log(emailAddress);
@@ -72,7 +44,6 @@ exports.auth_signin_post = async (req, res) => {
   try {
     let user = await User.findOne({ emailAddress });
     console.log(user);
-
     if (!user) {
       return res.json({ message: "User Not Found!!!" }).status(400);
     }
@@ -106,7 +77,6 @@ exports.auth_signin_post = async (req, res) => {
 };
 
 // HTTP GET - Logout - to logout the user
-
 exports.auth_logout_get = (req, res) => {
   req.logout();
   req.flash("success", "You are successfully logged out");

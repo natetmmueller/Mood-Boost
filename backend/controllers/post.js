@@ -20,15 +20,13 @@ exports.addPost = (req, res) => {
     })
     .catch((err) => {
       console.log(err);
-    //   res.send("Error!");
     });
 };
+
 //Get all posts
 exports.post_index = (req, res) => {
   Post.find()
     .populate()
-    // res.render('routes/allPost', {posts})
-    //instead of rendering a view i nedd to render via React
     .then((posts) => {
       for (let post of posts) {
         post.path = `/post/${post._id}`;
@@ -40,17 +38,6 @@ exports.post_index = (req, res) => {
       console.log(error);
     });
 };
-
-// gets a post from the database
-// exports.getPost = (req, res) => {
-//     Post.find().populate('user')
-//     .then(posts => {
-//         res.json({posts})
-//     })
-//     .catch(err => {
-//         console.log(err);
-//     });
-// };
 
 //detail page of a post
 exports.showPost = async (req, res) => {
@@ -70,24 +57,12 @@ exports.addComment = async (req, res) => {
     let post = await Post.findById(req.params.id);
     post.comments.push(req.body);
     post.save();
-    // res.status(200).json({"done":"comment added succesfully"});
     res.status(200).json({post});
   } catch (err) {
       console.log(err)
     res.status(400).json(err);
   }
 };
-
-
-
-// exports.postEdit = (req, res) => {
-//   try {
-//     let update = Post.findByIdAndUpdate(req.body.id, req.body);
-//     res.status(200).json(update);
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
-// };
 
 // load post edit form
 exports.postEdit = (req, res) => {
@@ -113,20 +88,10 @@ exports.postUpdate = (req, res) => {
 };
 
 //deleting the post
-// exports.deletePost = (req, res) => {
-//     try {
-//         Post.findByIdAndDelete(req.params.id)
-//         res.status(200).send('Done')
-
-//     } catch(err){
-//         res.status(400).json(err);
-//     }
-// }
 exports.deletePost = (req, res) => {
   console.log(req.query.id);
   Post.findByIdAndDelete(req.query.id)
     .then((post) => {
-      // res.redirect("/author/index")
       res.json(post);
     })
     .catch((err) => {
@@ -134,17 +99,3 @@ exports.deletePost = (req, res) => {
     });
 };
 
-// exports.deleteComment = async (req, res) => {
-//     try {
-//       req.body.user = req.user;
-//       let post = await Post.findById(req.params.id);
-//       console.log('02', post)
-//       post.comments.pop(req.query.commentId);
-//       post.save();
-//       // res.status(200).json({"done":"comment added succesfully"});
-//       res.status(200).json({post});
-//     } catch (err) {
-//         console.log(err)
-//       res.status(400).json(err);
-//     }
-//   };

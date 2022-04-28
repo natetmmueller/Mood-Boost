@@ -43,6 +43,7 @@ export default function PostCreate(props) {
   return (
     <div>
       <Container>
+        
         <h1>Create Post</h1>
 
         <form onSubmit={handleSubmit}>

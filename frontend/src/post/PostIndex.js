@@ -3,13 +3,9 @@ import Axios from "axios";
 import Post from "./Post";
 import { useNavigate } from "react-router";
 
-// import { Post } from "../../../backend/models/Post";
-
 export default function PostIndex(props){
   const [posts, setPosts] = useState(props.posts)
   const navigate = useNavigate();
-
-
 
   useEffect(() => {
     if(!props.user){
@@ -18,7 +14,7 @@ export default function PostIndex(props){
     setPosts(props.posts)
     props.loadPostIndex();
   }, [props.posts?.length, props.postEdited, props])
-// if we put---> , props <--- in line 20 at the end its goes into a infinite loop but it does show the edit and add post automatically updating
+
   const deletePost = (id) => {
     Axios.delete(`/post/delete?id=${id}`, {
       headers: {

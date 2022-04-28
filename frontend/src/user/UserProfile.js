@@ -40,7 +40,6 @@ export default class UserProfile extends Component {
     Axios.get("/post/index")
 
       .then((response) => {
-        console.log(response.data.posts);
         this.setState({
           posts: response.data.posts,
         });
@@ -58,7 +57,6 @@ export default class UserProfile extends Component {
       },
     })
       .then((response) => {
-        console.log("Deleted Post!!!");
         this.loadPostIndex();
       })
       .catch((error) => {
@@ -68,9 +66,7 @@ export default class UserProfile extends Component {
   };
 
   render() {
-    console.log(this.state);
-    console.log(this.state.posts);
-    console.log(this.state.user);
+    
     const userPosts = this.state.posts.map((post, index) => {
       if (this.state.user.user.id == post.user) {
         return (
@@ -91,30 +87,12 @@ export default class UserProfile extends Component {
           This is what makes <b>{this.props.user.user.name}</b> happy!
         </div>
         <Row xs={1} md={3} className="g-4">
-          {/* {Array.from({ length: 4 })}.map((_, idx => ( */}
           <Col>
             <Card>{userPosts}</Card>
           </Col>
-          {/* ))) */}
         </Row>
       </Container>
     );
   }
 }
 
-{
-  /* <div class="row">
-          <table>
-            <tbody>
-              <tr>
-                <td "profileTitle">
-                  This is what makes <b>{this.state.firstName}</b> happy!
-                  {this.state.userPosts}
-                </td>
-              </tr>
-
-              {userPosts}
-            </tbody>
-          </table>
-        </div> */
-}

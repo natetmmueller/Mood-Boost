@@ -21,8 +21,6 @@ export default function Comment(props) {
 
     },[newCommentAdded])
   
-  
-  
     return (
     <div>
         {comment && <div> {comment.map((e)=> (<li>{e.comment} </li>))} </div>
