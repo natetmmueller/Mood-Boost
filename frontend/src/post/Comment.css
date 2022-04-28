@@ -1,0 +1,31 @@
+.commentDiv {
+  text-align: center;
+  background-color: rgb(44, 104, 255, 0.6);
+  padding: 20px;
+}
+
+.addCommentTitle {
+  font-family: "Lato", sans-serif;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+}
+
+.oneCommentTitle {
+  font-size: 30px;
+}
+
+.commentTitle {
+  font-size: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.comments {
+  font-size: 25px;
+  text-align: left;
+}
+
+.comments > div {
+  font-size: 25px;
+  text-align: left;
+}
