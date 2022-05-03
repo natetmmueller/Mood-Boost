@@ -50,6 +50,9 @@
   /* did this change */
   background-image: linear-gradient(yellow, orange) !important;
   border-radius: 10px !important;
+  grid-column-start: 4;
+  grid-column: 4 / 10;
+  grid-row: 1 / 12;
 }
 
 h1 {
@@ -116,4 +119,15 @@ body {
   text-align: left;
   padding-top: 4px;
   padding-bottom: 4px;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

@@ -35,73 +35,89 @@ export default class Post extends Component {
     let postLink = `/post/${this.props._id}`;
 
     return (
-      <Card
-        bg="warning"
-        className="cards"
-        border="warning"
-        style={{ width: "20rem" }}
-      >
-        <>
-          <Card.Header
-            style={{
-              "font-family": "Lato, sans-serif",
-              "text-align": "center",
-            }}
-          >
-            {this.props.postTitle}
-          </Card.Header>
-
-          <td className="cardContent">{this.props.scale}</td>
-          <td className="cardContent">{this.props.description}</td>
-          <td className="cardContent">{this.props.linkToIt}</td>
-          <td>
-            <Card.Footer
-              className="cardFooter"
+      <div class="card-container">
+        <Card
+          bg="warning"
+          className="cards"
+          border="warning"
+          style={{ width: "20rem" }}
+        >
+          <Card.Img
+            src={this.props.linkToIt}
+            style={{ width: "80%", height: "80%" }}
+            className="centered"
+          ></Card.Img>
+          <>
+            <Card.Header
               style={{
                 "font-family": "Lato, sans-serif",
                 "text-align": "center",
               }}
             >
-              <Link to={postLink}>
-                <Button variant="info" className="lm postButton">
-                  Learn More
-                </Button>
-              </Link>
+              {this.props.postTitle}
+            </Card.Header>
 
-              {this.state.user && this.state.user.user.id == this.props.user ? (
-                <>
-                  <Link to={`/post/edit/${this.props._id}`}>
+            <div className="cardContent">
+              <b>How happy does this make me? </b>
+            </div>
+            <div className="cardContent">
+              <b>{this.props.scale}</b> out of <b>10</b>!
+            </div>
+            <hr></hr>
+            <div className="cardContent">
+              <b>Why does this make me happy?</b>
+            </div>
+            <div className="cardContent">{this.props.description}</div>
+            <td>
+              <Card.Footer
+                className="cardFooter"
+                style={{
+                  "font-family": "Lato, sans-serif",
+                  "text-align": "center",
+                }}
+              >
+                <Link to={postLink}>
+                  <Button variant="info" className="lm postButton">
+                    Learn More
+                  </Button>
+                </Link>
+
+                {this.state.user &&
+                this.state.user.user.id == this.props.user ? (
+                  <>
+                    <Link to={`/post/edit/${this.props._id}`}>
+                      <Button
+                        variant="info"
+                        className="edit postButton"
+                        onClick={() => this.props.editView(this.props._id)}
+                      >
+                        Edit
+                      </Button>
+                    </Link>
                     <Button
                       variant="info"
-                      className="edit postButton"
-                      onClick={() => this.props.editView(this.props._id)}
+                      className="del postButton"
+                      onClick={() => this.props.deletePost(this.props._id)}
                     >
+                      Delete
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button disabled variant="info" className="edit postButton">
                       Edit
                     </Button>
-                  </Link>
-                  <Button
-                    variant="info"
-                    className="del postButton"
-                    onClick={() => this.props.deletePost(this.props._id)}
-                  >
-                    Delete
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Button disabled variant="info" className="edit postButton">
-                    Edit
-                  </Button>
 
-                  <Button disabled variant="info" className="del postButton">
-                    Delete
-                  </Button>
-                </>
-              )}
-            </Card.Footer>
-          </td>
-        </>
-      </Card>
+                    <Button disabled variant="info" className="del postButton">
+                      Delete
+                    </Button>
+                  </>
+                )}
+              </Card.Footer>
+            </td>
+          </>
+        </Card>
+      </div>
     );
   }
 }
