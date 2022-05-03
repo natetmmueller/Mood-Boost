@@ -118,7 +118,7 @@ export default function PostCreate(props) {
             <div>
               <div>
                 <label class="createFormLabel">
-                  Link to my Mood Booster! <em>Click here...</em>
+                  Copy and paste the link to a photo of your Mood Booster!
                 </label>
               </div>
               <div>

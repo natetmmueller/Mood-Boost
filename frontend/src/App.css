@@ -50,6 +50,8 @@
   /* did this change */
   background-image: linear-gradient(yellow, orange) !important;
   border-radius: 10px !important;
+  grid-column: 5 / 10;
+  grid-row: 1 / 12;
 }
 
 h1 {
@@ -114,6 +116,11 @@ body {
 .cardContent {
   font-family: "Lato", sans-serif;
   text-align: left;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }

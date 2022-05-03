@@ -37,9 +37,11 @@ export default function PostDetail(props) {
             <h1 className="commentTitle">
               <em>Because...{post.description}</em>
             </h1>
-            <h1 className="commentTitle">
-              Follow the link: <b>{post.linkToIt}</b>
-            </h1>
+            <img
+              className="centered"
+              src={post.linkToIt}
+              style={{ width: "25%" }}
+            />
             <h1 className="comments">Comments:</h1>
             <br></br>
             <Comment />

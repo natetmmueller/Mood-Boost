@@ -29,7 +29,7 @@ export default function PostIndex(props) {
       <div>
         <h1>All the Things that Make us Happy!</h1>
         <div>
-          <table>{allPosts}</table>
+          <div>{allPosts}</div>
         </div>
       </div>
     </>
